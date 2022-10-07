@@ -5,6 +5,12 @@
       location = "container:Teslawsome.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Facade">
+   </FileRef>
+   <FileRef
+      location = "group:Models">
+   </FileRef>
+   <FileRef
       location = "group:Networking">
    </FileRef>
 </Workspace>

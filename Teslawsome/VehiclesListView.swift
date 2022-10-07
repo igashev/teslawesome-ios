@@ -7,6 +7,8 @@
 
 import SwiftUI
 import ComposableArchitecture
+import VehiclesModels
+import VehiclesNetworking
 
 struct VehiclesListState: Equatable {
     var vehicles: [Vehicle] = []
@@ -23,7 +25,7 @@ struct VehiclesListEnvironment {
     static var live: Self {
         .init(getVehicles: {
             let token = CachingClient.live.getToken()!
-            return try await TeslaNetworkingClient.getAllVehicles(token: token.accessToken)
+            return try await VehiclesNetworkClient.live.getVehicles(token: token.accessToken)
         })
     }
     

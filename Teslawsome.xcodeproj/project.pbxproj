@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F02F809228F0687B00FF1018 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809128F0687B00FF1018 /* Models */; };
+		F02F809428F0688C00FF1018 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809328F0688C00FF1018 /* Networking */; };
 		F03E87BB28EEFFBB00DDA095 /* CachingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E87BA28EEFFBB00DDA095 /* CachingClient.swift */; };
 		F03E886128EF3A5E00DDA095 /* VehiclesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */; };
 		F063A62A28B1723A00F5B9C5 /* TeslawsomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */; };
@@ -62,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02F809428F0688C00FF1018 /* Networking in Frameworks */,
+				F02F809228F0687B00FF1018 /* Models in Frameworks */,
 				F0F9063928B35E3A00D771E5 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +87,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F02F809028F0687B00FF1018 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F063A61D28B1723A00F5B9C5 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +101,7 @@
 				F063A63928B1723C00F5B9C5 /* TeslawsomeTests */,
 				F063A64328B1723C00F5B9C5 /* TeslawsomeUITests */,
 				F063A62728B1723A00F5B9C5 /* Products */,
+				F02F809028F0687B00FF1018 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,6 +190,8 @@
 			name = Teslawsome;
 			packageProductDependencies = (
 				F0F9063828B35E3A00D771E5 /* ComposableArchitecture */,
+				F02F809128F0687B00FF1018 /* Models */,
+				F02F809328F0688C00FF1018 /* Networking */,
 			);
 			productName = Teslawsome;
 			productReference = F063A62628B1723A00F5B9C5 /* Teslawsome.app */;
@@ -634,12 +648,20 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
+				minimumVersion = 0.40.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F02F809128F0687B00FF1018 /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		F02F809328F0688C00FF1018 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
 		F0F9063828B35E3A00D771E5 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F0F9063728B35E3A00D771E5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
