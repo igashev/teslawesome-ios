@@ -7,6 +7,9 @@
 
 import SwiftUI
 import ComposableArchitecture
+import AuthenticationNetworking
+import AuthenticationModels
+import CachingClient
 
 struct LoginState: Equatable {
     let teslaAuthDomain = "https://auth.tesla.com/oauth2/v3/authorize"
@@ -28,7 +31,7 @@ enum LoginAction: BindableAction {
     case didTapSignInWithTeslaButton
     case didReceiveAuthCodeURL(url: URL)
     case requestBearerToken(authorizationCode: String, codeChallengeCode: String)
-    case didReceiveBearerToken(TaskResult<TokenResponse>)
+    case didReceiveBearerToken(TaskResult<AuthenticationTokensResponse>)
     case binding(BindingAction<LoginState>)
 }
 
@@ -40,7 +43,7 @@ struct LoginEnvironment {
     let encodeBase64URL: (String) -> String
     let extractQueryParameter: (URL, String) -> String?
     
-    let getToken: (String, String) async throws -> TokenResponse
+    let getToken: AuthenticationNetworkClient.GetAuthenticationToken
     
     static var live: Self {
         .init(
@@ -50,7 +53,7 @@ struct LoginEnvironment {
             hashSHA256: Utils.hashInSHA256(string:),
             encodeBase64URL: Utils.encodeBase64URL(string:),
             extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:),
-            getToken: TeslaNetworkingClient.getBearerToken(authorizationToken:codeVerifier:)
+            getToken: AuthenticationNetworkClient.live.getAuthenticationToken(authorizationToken:codeVerifier:)
         )
     }
     
@@ -62,9 +65,7 @@ struct LoginEnvironment {
             hashSHA256: Utils.hashInSHA256(string:),
             encodeBase64URL: Utils.encodeBase64URL(string:),
             extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:),
-            getToken: { authToken, codeVerifier in return
-                TokenResponse(accessToken: "sada", refreshToken: "sada", idToken: "afafa", expiresIn: 3800, tokenType: "accessToken")
-            }
+            getToken: { _, _ in return .stub }
         )
     }
 }

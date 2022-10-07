@@ -4,26 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "Networking",
-    platforms: [
-        .iOS(.v16),
-    ],
+    name: "Caching",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library( name: "Networking", targets: ["Networking", "AuthenticationNetworking", "VehiclesNetworking"]),
+        .library(name: "Caching", targets: ["CachingClient"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/igashev/NetworkRequester.git", exact: "1.3.0"),
         .package(name: "Models", path: "../Models")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(name: "Networking", dependencies: ["NetworkRequester"]),
-        .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
-        .target(name: "AuthenticationNetworking", dependencies: ["Networking"], path: "Sources/Authentication"),
-        .target(name: "VehiclesNetworking", dependencies: ["Networking", "Models"], path: "Sources/Vehicles")
+        .target(name: "CachingClient", dependencies: ["Models"], path: "Sources/Caching"),
+        .testTarget(name: "CachingTests", dependencies: ["CachingClient"]),
     ]
 )

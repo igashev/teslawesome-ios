@@ -2,7 +2,7 @@ import Foundation
 
 struct Networking {
     static let timeoutInterval: TimeInterval = 30
-    static let apiEnvironment: Environment.API = .production
+    static let environment: Environment = .production
     
     static var jsonDecoder: JSONDecoder {
         let jsonDecoder = JSONDecoder()

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import CachingClient
 
 struct AppState: Equatable {
     var hasEverBeenAuthenticated: Bool = false

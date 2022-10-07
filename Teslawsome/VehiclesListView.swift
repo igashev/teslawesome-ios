@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import VehiclesModels
 import VehiclesNetworking
+import CachingClient
 
 struct VehiclesListState: Equatable {
     var vehicles: [Vehicle] = []
