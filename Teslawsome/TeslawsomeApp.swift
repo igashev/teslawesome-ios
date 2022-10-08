@@ -7,7 +7,8 @@
 
 import SwiftUI
 import ComposableArchitecture
-import CachingClient
+import Networking
+import AuthenticationFacade
 
 struct AppState: Equatable {
     var hasEverBeenAuthenticated: Bool = false
@@ -18,10 +19,10 @@ enum AppAction {
 }
 
 struct AppEnvironment {
-    let cachingClient: CachingClient
+    let authenticationFacadeClient: AuthenticationFacadeClient
     
     static var live: Self {
-        .init(cachingClient: .live)
+        .init(authenticationFacadeClient: .live)
     }
 }
 
@@ -29,7 +30,7 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> {
     .init { state, action, environment in
         switch action {
         case .didAppear:
-            let hasEverBeenAuthenticated = environment.cachingClient.getToken() != nil
+            let hasEverBeenAuthenticated = environment.authenticationFacadeClient.cachedAuthenticationToken != nil
             state.hasEverBeenAuthenticated = hasEverBeenAuthenticated
             return .none
         }
@@ -38,10 +39,16 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> {
 
 @main
 struct TeslawsomeApp: App {
-    let store: Store<AppState, AppAction> = .init(initialState: .init(), reducer: appReducer, environment: .live)
+    let store: Store<AppState, AppAction>
     @ObservedObject var viewStore: ViewStore<AppState, AppAction>
     
     init() {
+        Networking.appendMiddleware(
+            AuthenticationTokenMiddleware(authenticationFacadeClient: .live),
+            LoggingMiddleware.live
+        )
+        
+        self.store = .init(initialState: .init(), reducer: appReducer, environment: .live)
         self.viewStore = .init(store)
     }
     

@@ -3,7 +3,7 @@ import NetworkRequester
 import VehiclesModels
 
 public struct VehiclesNetworkClient {
-    typealias GetVehicles = (String) async throws -> VehiclesResponse
+    public typealias GetVehicles = () async throws -> VehiclesResponse
     
     let getVehicles: GetVehicles
     
@@ -11,8 +11,8 @@ public struct VehiclesNetworkClient {
         self.getVehicles = getVehicles
     }
     
-    public func getVehicles(token: String) async throws -> VehiclesResponse {
-        try await getVehicles(token)
+    public func getVehicles() async throws -> VehiclesResponse {
+        try await getVehicles()
     }
 }
 
@@ -20,9 +20,7 @@ public extension VehiclesNetworkClient {
     static var live: Self {
         let asyncCaller = AsyncCaller.standard
         return .init(
-            getVehicles: { token in
-                try await asyncCaller.call(using: RequestBuilder.makeGetVehicles(accessToken: token))
-            }
+            getVehicles: { try await asyncCaller.call(using: RequestBuilder.makeGetVehicles()) }
         )
     }
 }

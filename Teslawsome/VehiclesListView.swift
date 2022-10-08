@@ -9,7 +9,6 @@ import SwiftUI
 import ComposableArchitecture
 import VehiclesModels
 import VehiclesNetworking
-import CachingClient
 
 struct VehiclesListState: Equatable {
     var vehicles: [Vehicle] = []
@@ -24,10 +23,7 @@ struct VehiclesListEnvironment {
     let getVehicles: () async throws -> VehiclesResponse
     
     static var live: Self {
-        .init(getVehicles: {
-            let token = CachingClient.live.getToken()!
-            return try await VehiclesNetworkClient.live.getVehicles(token: token.accessToken)
-        })
+        .init(getVehicles: { try await VehiclesNetworkClient.live.getVehicles() })
     }
     
     static var stub: Self {

@@ -7,9 +7,8 @@
 
 import SwiftUI
 import ComposableArchitecture
-import AuthenticationNetworking
+import AuthenticationFacade
 import AuthenticationModels
-import CachingClient
 
 struct LoginState: Equatable {
     let teslaAuthDomain = "https://auth.tesla.com/oauth2/v3/authorize"
@@ -36,36 +35,32 @@ enum LoginAction: BindableAction {
 }
 
 struct LoginEnvironment {
-    let cachingClient: CachingClient
+    let authenticationFacadeClient: AuthenticationFacadeClient
     let challengeCodeVerifier: String
     let generateRandomStringOfLength: (Int) -> String
     let hashSHA256: (String) -> String
     let encodeBase64URL: (String) -> String
     let extractQueryParameter: (URL, String) -> String?
     
-    let getToken: AuthenticationNetworkClient.GetAuthenticationToken
-    
     static var live: Self {
         .init(
-            cachingClient: .live,
+            authenticationFacadeClient: .live,
             challengeCodeVerifier: Utils.randomlyGeneratedString(lenght: 86),
             generateRandomStringOfLength: Utils.randomlyGeneratedString(lenght:),
             hashSHA256: Utils.hashInSHA256(string:),
             encodeBase64URL: Utils.encodeBase64URL(string:),
-            extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:),
-            getToken: AuthenticationNetworkClient.live.getAuthenticationToken(authorizationToken:codeVerifier:)
+            extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:)
         )
     }
     
     static var stub: Self {
         .init(
-            cachingClient: .live,
+            authenticationFacadeClient: .live,
             challengeCodeVerifier: Utils.randomlyGeneratedString(lenght: 86),
             generateRandomStringOfLength: Utils.randomlyGeneratedString(lenght:),
             hashSHA256: Utils.hashInSHA256(string:),
             encodeBase64URL: Utils.encodeBase64URL(string:),
-            extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:),
-            getToken: { _, _ in return .stub }
+            extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:)
         )
     }
 }
@@ -77,7 +72,6 @@ var loginReducer: Reducer<LoginState, LoginAction, LoginEnvironment> {
             let codeChallengeRandomString = environment.challengeCodeVerifier
             let codeChallengeSHA256String = environment.hashSHA256(codeChallengeRandomString)
             let codeChallengeBase64URLEncoded = environment.encodeBase64URL(codeChallengeSHA256String)
-            print("🍆 - \(codeChallengeRandomString)")
             var urlComponents = URLComponents(string: state.teslaAuthDomain)
             urlComponents?.queryItems = [
                 .init(name: "client_id", value: state.clientID),
@@ -101,16 +95,17 @@ var loginReducer: Reducer<LoginState, LoginAction, LoginEnvironment> {
         case .requestBearerToken(let authorizationCode, let codeChallengeCode):
             return .task {
                 let taskResult = await TaskResult {
-                    try await environment.getToken(authorizationCode, codeChallengeCode)
+                    try await environment.authenticationFacadeClient.getAuthenticationToken(
+                        authorizationToken: authorizationCode,
+                        codeVerifier: codeChallengeCode
+                    )
                 }
                 
                 return .didReceiveBearerToken(taskResult)
             }
-        case .didReceiveBearerToken(.success(let tokenResponse)):
+        case .didReceiveBearerToken(.success):
             state.showVehicles.toggle()
-            return .fireAndForget {
-                environment.cachingClient.storeToken(tokenResponse)
-            }
+            return .none
         case .didReceiveBearerToken(.failure(let error)):
             print(error)
             return .none

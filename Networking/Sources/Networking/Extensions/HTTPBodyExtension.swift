@@ -1,5 +1,5 @@
 import NetworkRequester
 
 public extension HTTPBody {
-    init<T: Encodable>(encodable: T) { self.init(encodable: encodable, jsonEncoder: Networking.jsonEncoder) }
+    init<E: Encodable>(encodable: E) { self.init(encodable: encodable, jsonEncoder: Networking.jsonEncoder) }
 }

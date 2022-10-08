@@ -9,4 +9,12 @@ enum RequestBuilder {
             httpBody: .init(encodable: AuthenticationTokenRequest(code: authorizationToken, codeVerifier: codeVerifier))
         )
     }
+    
+    static func makeRefreshAuthenticationToken(refreshToken: String) -> URLRequestBuilder {
+        .auth(
+            endpoint: Endpoint.refreshToken,
+            httpMethod: .post,
+            httpBody: .init(encodable: RefreshAuthenticationTokenRequest(refreshToken: refreshToken))
+        )
+    }
 }

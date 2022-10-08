@@ -4,7 +4,7 @@ import AuthenticationModels
 // TODO: - Migrate this to keychain later
 public struct CachingClient {
     public let storeToken: (AuthenticationTokensResponse) -> ()
-    public let getToken: () -> (AuthenticationTokensResponse?)
+    public let getToken: () -> (CacheContainer<AuthenticationTokensResponse>?)
 }
 
 public extension CachingClient {
@@ -14,7 +14,8 @@ public extension CachingClient {
         let decoder = JSONDecoder()
         return .init(
             storeToken: { tokenToStore in
-                let encodedToken = try? encoder.encode(tokenToStore)
+                let container = CacheContainer(data: tokenToStore, dateCached: .now)
+                let encodedToken = try? encoder.encode(container)
                 userDefaults.set(encodedToken, forKey: "authentication_token")
             },
             getToken: {
@@ -22,8 +23,20 @@ public extension CachingClient {
                     return nil
                 }
                 
-                return try? decoder.decode(AuthenticationTokensResponse.self, from: tokenData)
+                return try? decoder.decode(CacheContainer<AuthenticationTokensResponse>.self, from: tokenData)
             }
         )
+    }
+}
+
+public struct CacheContainer<C: Codable>: Codable {
+    public let data: C
+    public let dateCached: Date
+}
+
+public extension CacheContainer<AuthenticationTokensResponse> {
+    var hasExpired: Bool {
+        let expiryDate = dateCached.addingTimeInterval(TimeInterval(data.expiresIn))
+        return expiryDate <= .now
     }
 }

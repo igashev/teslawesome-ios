@@ -1,6 +1,7 @@
 import Foundation
+import NetworkRequester
 
-struct Networking {
+public enum Networking {
     static let timeoutInterval: TimeInterval = 30
     static let environment: Environment = .production
     
@@ -20,5 +21,11 @@ struct Networking {
         let jsonDecoder = JSONEncoder()
         jsonDecoder.keyEncodingStrategy = .convertToSnakeCase
         return jsonDecoder
+    }
+    
+    private(set) static var middlewares: [Middleware] = []
+    
+    public static func appendMiddleware(_ middlewares: Middleware...) {
+        self.middlewares.append(contentsOf: middlewares)
     }
 }
