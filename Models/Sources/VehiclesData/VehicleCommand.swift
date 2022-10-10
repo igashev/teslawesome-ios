@@ -1,5 +1,5 @@
 public struct VehicleCommand: Equatable {
-    public enum Kind: CustomStringConvertible {
+    public enum Kind: CaseIterable, CustomStringConvertible {
         case honkHorn, flashLights
         
         public var description: String {

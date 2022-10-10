@@ -12,13 +12,17 @@ import VehiclesDataModels
 
 struct VehicleCommandState: Equatable {
     let vehicle: Vehicle
-    let commands: [VehicleCommand] = [
-        .init(kind: .honkHorn),
-        .init(kind: .flashLights)
-    ]
+    let commands: [VehicleCommand] = VehicleCommand.Kind.allCases.map(VehicleCommand.init)
+    
+    let wakeUpMaxRetriesCount = 10
+    let wakeUpIntervalBetweenRetriesInSeconds: TimeInterval = 3
+    var isVehicleWokenUp = false
 }
 
 enum VehicleCommandAction {
+    case didAppear
+    case wakeUp
+    case didWakeUp(TaskResult<VehicleResponse>)
     case runCommand(VehicleCommand.Kind)
     case didReceiveCommandResponse(TaskResult<VehicleCommandContainerResponse>)
 }
@@ -29,11 +33,40 @@ struct VehicleCommandsEnvironment {
     static var live: Self {
         .init(vehicleCommandsNetworkClient: .live)
     }
+    
+    #if DEBUG
+    static var stub: Self {
+        .init(vehicleCommandsNetworkClient: .stub)
+    }
+    #endif
 }
 
 var vehicleCommandReducer: Reducer<VehicleCommandState, VehicleCommandAction, VehicleCommandsEnvironment> {
     .init { state, action, environment in
         switch action {
+        case .didAppear:
+            return Effect(value: .wakeUp)
+        case .wakeUp:
+            return .task { [vehicleId = state.vehicle.id, wakeUpAttempts = state.wakeUpMaxRetriesCount, wakeUpAttemptsInterval = state.wakeUpIntervalBetweenRetriesInSeconds] in
+                let taskResult = await TaskResult<VehicleResponse> {
+                    try await Task.retrying(
+                        maxRetryCount: wakeUpAttempts,
+                        retryDelayInSeconds: wakeUpAttemptsInterval,
+                        retryIf: { $0.response.state != .online },
+                        operation: { [vehicleId = vehicleId] in
+                            try await environment.vehicleCommandsNetworkClient.wakeUp(vehicleId: vehicleId)
+                        }
+                    ).value
+                }
+                
+                return .didWakeUp(taskResult)
+            }
+        case .didWakeUp(.success(let vehicleResponse)):
+            state.isVehicleWokenUp = vehicleResponse.response.state == .online
+            return .none
+        case .didWakeUp(.failure(let error)):
+            print(error)
+            return .none
         case .runCommand(.honkHorn):
             return .task { [vehicleId = state.vehicle.id] in
                 let taskResult = await TaskResult {
@@ -58,6 +91,7 @@ var vehicleCommandReducer: Reducer<VehicleCommandState, VehicleCommandAction, Ve
             return .none
         }
     }
+    .debug()
 }
 
 struct VehicleCommandsView: View {
@@ -73,22 +107,32 @@ struct VehicleCommandsView: View {
     
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 40) {
-                ForEach(viewStore.commands, id: \.kind) { command in
-                    Button(
-                        action: {
-                            viewStore.send(.runCommand(command.kind))
-                        },
-                        label: {
-                            VStack {
-                                Image(systemName: "hand.wave")
-                                Text(String(describing: command.kind))
+            if viewStore.state.isVehicleWokenUp {
+                LazyVGrid(columns: columns, spacing: 40) {
+                    ForEach(viewStore.commands, id: \.kind) { command in
+                        Button(
+                            action: {
+                                viewStore.send(.runCommand(command.kind))
+                            },
+                            label: {
+                                VStack {
+                                    Image(systemName: "hand.wave")
+                                    Text(String(describing: command.kind))
+                                }
                             }
-                        }
-                    )
-                    .font(.largeTitle)
+                        )
+                        .font(.largeTitle)
+                    }
+                }
+            } else {
+                VStack {
+                    Text("Vehicle is waking up...")
+                    ProgressView()
                 }
             }
+        }
+        .onAppear {
+            viewStore.send(.didAppear)
         }
     }
 }
@@ -98,7 +142,7 @@ struct VehicleCommandsView_Previews: PreviewProvider {
         VehicleCommandsView(store: .init(
             initialState: .init(vehicle: .stub),
             reducer: vehicleCommandReducer,
-            environment: .live
+            environment: .stub
         ))
     }
 }

@@ -1,11 +1,15 @@
 public struct Vehicle: Decodable, Equatable, Hashable, Identifiable {
+    public enum State: String, Decodable {
+        case online, asleep
+    }
+    
     public let id: Int
     public let vehicleId: Int
     public let vin: String
     public let displayName: String
     public let color: String?
     public let tokens: [String]
-    public let state: String
+    public let state: State
     public let inService: Bool
 //  public   let ids: String
     public let calendarEnabled: Bool

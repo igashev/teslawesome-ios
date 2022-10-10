@@ -77,6 +77,7 @@ struct VehiclesListView: View {
                     }
                 }
             }
+            .navigationTitle("Your vehicles")
         } detail: {
             if let selectedVehicle = viewStore.state.selectedVehicle {
                 VehicleCommandsView(store: .init(
