@@ -28,7 +28,7 @@ public struct AuthenticationNetworkClient {
 
 public extension AuthenticationNetworkClient {
     static var live: Self {
-        let asyncCaller = AsyncCaller.standard
+        let asyncCaller = AsyncCaller(decoder: Networking.jsonDecoder, middleware: [LoggingMiddleware.live])
         return .init(
             getAuthenticationToken: { authorizationToken, codeVerifier in
                 let request = RequestBuilder.makeGetAuthenticationToken(authorizationToken: authorizationToken, codeVerifier: codeVerifier)

@@ -10,7 +10,7 @@ let package = Package(
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library( name: "Networking", targets: ["Networking", "AuthenticationNetworking", "VehiclesNetworking"]),
+        .library( name: "Networking", targets: ["Networking", "AuthenticationNetworking", "VehiclesDataNetworking", "VehicleCommandsNetworking"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,6 +24,7 @@ let package = Package(
         .target(name: "Networking", dependencies: ["NetworkRequester"]),
         .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
         .target(name: "AuthenticationNetworking", dependencies: ["Networking"], path: "Sources/Authentication"),
-        .target(name: "VehiclesNetworking", dependencies: ["Networking", "Models"], path: "Sources/Vehicles")
+        .target(name: "VehiclesDataNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehiclesData"),
+        .target(name: "VehicleCommandsNetworking", dependencies: ["Networking"], path: "Sources/VehicleCommands")
     ]
 )

@@ -1,9 +1,8 @@
-import Foundation
 import NetworkRequester
-import VehiclesModels
+import VehiclesDataModels
 
-public struct VehiclesNetworkClient {
-    public typealias GetVehicles = () async throws -> VehiclesResponse
+public struct VehiclesDataNetworkClient {
+    typealias GetVehicles = () async throws -> VehiclesResponse
     
     let getVehicles: GetVehicles
     
@@ -16,7 +15,7 @@ public struct VehiclesNetworkClient {
     }
 }
 
-public extension VehiclesNetworkClient {
+public extension VehiclesDataNetworkClient {
     static var live: Self {
         let asyncCaller = AsyncCaller.standard
         return .init(
