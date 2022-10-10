@@ -10,7 +10,7 @@ public struct LoggingMiddleware: Middleware {
     }
     
     /// Logs a request data like HTTP method, URL path, HTTP headers and HTTP body  when a subscription is attached.
-    public func onRequest(_ request: inout URLRequest) {
+    public func onRequest(_ request: inout URLRequest) async throws {
         let rows = [
             request.url.flatMap { "➡️ Requesting \(request.httpMethod ?? "") @ \($0)" },
             request.allHTTPHeaderFields.flatMap { $0.isEmpty ? nil : "Headers: \($0)" },

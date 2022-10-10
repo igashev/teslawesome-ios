@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/igashev/NetworkRequester.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "d7f95798815436668cd45f897c9bf7f60740b61f"
+        "branch" : "feature/IG/asyncStreamMiddleware",
+        "revision" : "7cfccf94c6be68d1adf5fa613f721ec16a6bab92"
       }
     },
     {

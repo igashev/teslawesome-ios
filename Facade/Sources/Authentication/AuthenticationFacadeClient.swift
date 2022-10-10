@@ -44,13 +44,6 @@ public struct AuthenticationFacadeClient {
             return authenticationToken.data
         }
     }
-    
-    public func refreshAuthenticationTokenIfNeeded(callback: @escaping (AuthenticationTokensResponse?) -> ()) {
-        Task {
-            let token = try await refreshAuthenticationTokenIfNeeded()
-            callback(token)
-        }
-    }
 }
 
 public extension AuthenticationFacadeClient {

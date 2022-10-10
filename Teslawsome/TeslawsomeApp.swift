@@ -44,8 +44,8 @@ struct TeslawsomeApp: App {
     
     init() {
         Networking.appendMiddleware(
-            LoggingMiddleware.live,
-            AuthenticationTokenMiddleware(authenticationFacadeClient: .live)
+            AuthenticationTokenMiddleware(authenticationFacadeClient: .live),
+            LoggingMiddleware.live
         )
         
         self.store = .init(initialState: .init(), reducer: appReducer, environment: .live)
