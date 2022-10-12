@@ -10,21 +10,36 @@ let package = Package(
     ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library( name: "Networking", targets: ["Networking", "AuthenticationNetworking", "VehiclesDataNetworking", "VehicleCommandsNetworking"]),
+        .library(
+            name: "Networking",
+            targets: [
+                "Networking",
+                "AuthenticationNetworking",
+                "VehiclesDataNetworking",
+                "VehicleCommandsNetworking"
+            ]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.42.0"),
         .package(url: "https://github.com/igashev/NetworkRequester.git", branch: "feature/IG/asyncStreamMiddleware"),
         .package(name: "Models", path: "../Models"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(name: "Networking", dependencies: ["NetworkRequester"]),
+        .target(
+            name: "Networking",
+            dependencies: [
+                "NetworkRequester",
+                .product(name: "Dependencies", package: "swift-composable-architecture")
+            ]
+        ),
         .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
-        .target(name: "AuthenticationNetworking", dependencies: ["Networking"], path: "Sources/Authentication"),
+        .target(name: "AuthenticationNetworking", dependencies: ["Networking", "Models"], path: "Sources/Authentication"),
         .target(name: "VehiclesDataNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehiclesData"),
-        .target(name: "VehicleCommandsNetworking", dependencies: ["Networking"], path: "Sources/VehicleCommands")
+        .target(name: "VehicleCommandsNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehicleCommands")
     ]
 )

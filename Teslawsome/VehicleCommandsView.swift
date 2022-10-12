@@ -8,41 +8,30 @@
 import SwiftUI
 import ComposableArchitecture
 import VehicleCommandsNetworking
+import VehicleCommandsModels
 import VehiclesDataModels
 
-struct VehicleCommandState: Equatable {
-    let vehicle: Vehicle
-    let commands: [VehicleCommand] = VehicleCommand.Kind.allCases.map(VehicleCommand.init)
-    
-    let wakeUpMaxRetriesCount = 10
-    let wakeUpIntervalBetweenRetriesInSeconds: TimeInterval = 3
-    var isVehicleWokenUp = false
-}
+struct VehicleCommandsFeature: ReducerProtocol {
+    struct State: Equatable {
+        let vehicle: Vehicle
+        let commands: [VehicleCommand] = VehicleCommand.Kind.allCases.map(VehicleCommand.init)
+        
+        let wakeUpMaxRetriesCount = 10
+        let wakeUpIntervalBetweenRetriesInSeconds: TimeInterval = 3
+        var isVehicleWokenUp = false
+    }
 
-enum VehicleCommandAction {
-    case didAppear
-    case wakeUp
-    case didWakeUp(TaskResult<VehicleResponse>)
-    case runCommand(VehicleCommand.Kind)
-    case didReceiveCommandResponse(TaskResult<VehicleCommandContainerResponse>)
-}
-
-struct VehicleCommandsEnvironment {
-    let vehicleCommandsNetworkClient: VehicleCommandsNetworkClient
-    
-    static var live: Self {
-        .init(vehicleCommandsNetworkClient: .live)
+    enum Action {
+        case didAppear
+        case wakeUp
+        case didWakeUp(TaskResult<VehicleResponse>)
+        case runCommand(VehicleCommand.Kind)
+        case didReceiveCommandResponse(TaskResult<VehicleCommandContainerResponse>)
     }
     
-    #if DEBUG
-    static var stub: Self {
-        .init(vehicleCommandsNetworkClient: .stub)
-    }
-    #endif
-}
-
-var vehicleCommandReducer: Reducer<VehicleCommandState, VehicleCommandAction, VehicleCommandsEnvironment> {
-    .init { state, action, environment in
+    @Dependency(\.vehicleCommandsNetworkClient) var vehicleCommandsNetworkClient
+    
+    func reduce(into state: inout State, action: Action) -> Effect<Action, Never> {
         switch action {
         case .didAppear:
             return Effect(value: .wakeUp)
@@ -54,7 +43,7 @@ var vehicleCommandReducer: Reducer<VehicleCommandState, VehicleCommandAction, Ve
                         retryDelayInSeconds: wakeUpAttemptsInterval,
                         retryIf: { $0.response.state != .online },
                         operation: { [vehicleId = vehicleId] in
-                            try await environment.vehicleCommandsNetworkClient.wakeUp(vehicleId: vehicleId)
+                            try await vehicleCommandsNetworkClient.wakeUp(vehicleId: vehicleId)
                         }
                     ).value
                 }
@@ -67,10 +56,16 @@ var vehicleCommandReducer: Reducer<VehicleCommandState, VehicleCommandAction, Ve
         case .didWakeUp(.failure(let error)):
             print(error)
             return .none
+        case .didReceiveCommandResponse(.success(let response)):
+            print(response)
+            return .none
+        case .didReceiveCommandResponse(.failure(let error)):
+            print(error)
+            return .none
         case .runCommand(.honkHorn):
             return .task { [vehicleId = state.vehicle.id] in
                 let taskResult = await TaskResult {
-                    try await environment.vehicleCommandsNetworkClient.honkHorn(vehicleId: vehicleId)
+                    try await vehicleCommandsNetworkClient.honkHorn(vehicleId: vehicleId)
                 }
                 
                 return .didReceiveCommandResponse(taskResult)
@@ -78,31 +73,44 @@ var vehicleCommandReducer: Reducer<VehicleCommandState, VehicleCommandAction, Ve
         case .runCommand(.flashLights):
             return .task { [vehicleId = state.vehicle.id] in
                 let taskResult = await TaskResult {
-                    return try await environment.vehicleCommandsNetworkClient.flashLights(vehicleId: vehicleId)
+                    return try await vehicleCommandsNetworkClient.flashLights(vehicleId: vehicleId)
                 }
                 
                 return .didReceiveCommandResponse(taskResult)
             }
-        case .didReceiveCommandResponse(.success(let response)):
-            print(response)
-            return .none
-        case .didReceiveCommandResponse(.failure(let error)):
-            print(error)
-            return .none
+        case .runCommand(.actuateFrunk):
+            return .task { [vehicleId = state.vehicle.id] in
+                let taskResult = await TaskResult {
+                    return try await vehicleCommandsNetworkClient.actuateTrunk(
+                        vehicleId: vehicleId,
+                        whichTrunk: .front
+                    )
+                }
+                
+                return .didReceiveCommandResponse(taskResult)
+            }
+        case .runCommand(.actuateTrunk):
+            return .task { [vehicleId = state.vehicle.id] in
+                let taskResult = await TaskResult {
+                    return try await vehicleCommandsNetworkClient.actuateTrunk(
+                        vehicleId: vehicleId,
+                        whichTrunk: .rear
+                    )
+                }
+                
+                return .didReceiveCommandResponse(taskResult)
+            }
         }
     }
-    .debug()
 }
 
 struct VehicleCommandsView: View {
-    let store: Store<VehicleCommandState, VehicleCommandAction>
-    @ObservedObject var viewStore: ViewStore<VehicleCommandState, VehicleCommandAction>
+    @ObservedObject var viewStore: ViewStoreOf<VehicleCommandsFeature>
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
-    init(store: Store<VehicleCommandState, VehicleCommandAction>) {
-        self.store = store
-        self.viewStore = ViewStore(store)
+    init(store: StoreOf<VehicleCommandsFeature>) {
+        self.viewStore = .init(store, observe: { $0 })
     }
     
     var body: some View {
@@ -141,8 +149,7 @@ struct VehicleCommandsView_Previews: PreviewProvider {
     static var previews: some View {
         VehicleCommandsView(store: .init(
             initialState: .init(vehicle: .stub),
-            reducer: vehicleCommandReducer,
-            environment: .stub
-        ))
+            reducer: VehicleCommandsFeature())
+        )
     }
 }

@@ -3,8 +3,8 @@ import NetworkRequester
 import Networking
 
 public struct AuthenticationNetworkClient {
-    typealias GetAuthenticationToken = (String, String) async throws -> AuthenticationTokensResponse
-    typealias RefreshAuthenticationToken = (String) async throws -> AuthenticationTokensResponse
+    typealias GetAuthenticationToken = (String, String) async throws -> AuthenticationToken
+    typealias RefreshAuthenticationToken = (String) async throws -> AuthenticationToken
     
     let getAuthenticationToken: GetAuthenticationToken
     let refreshAuthenticationToken: RefreshAuthenticationToken
@@ -17,11 +17,11 @@ public struct AuthenticationNetworkClient {
         self.refreshAuthenticationToken = refreshAuthenticationToken
     }
     
-    public func getAuthenticationToken(authorizationToken: String, codeVerifier: String) async throws -> AuthenticationTokensResponse {
+    public func getAuthenticationToken(authorizationToken: String, codeVerifier: String) async throws -> AuthenticationToken {
         try await getAuthenticationToken(authorizationToken, codeVerifier)
     }
     
-    public func refreshAuthenticationToken(refreshToken: String) async throws -> AuthenticationTokensResponse {
+    public func refreshAuthenticationToken(refreshToken: String) async throws -> AuthenticationToken {
         try await refreshAuthenticationToken(refreshToken)
     }
 }

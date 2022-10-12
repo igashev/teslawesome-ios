@@ -1,6 +1,7 @@
 public struct VehicleCommand: Equatable {
     public enum Kind: CaseIterable, CustomStringConvertible {
         case honkHorn, flashLights
+        case actuateFrunk, actuateTrunk
         
         public var description: String {
             switch self {
@@ -8,6 +9,10 @@ public struct VehicleCommand: Equatable {
                 return "Honk horn"
             case .flashLights:
                 return "Flash lights"
+            case .actuateFrunk:
+                return "Actuate frunk"
+            case .actuateTrunk:
+                return "Actuate trunk"
             }
         }
     }

@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.42.0"),
         .package(name: "Networking", path: "../Networking"),
         .package(name: "Caching", path: "../Caching"),
         .package(name: "Models", path: "../Models"),
@@ -22,7 +23,15 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(name: "AuthenticationFacade", dependencies: ["Networking", "Caching"], path: "Sources/Authentication"),
+        .target(
+            name: "AuthenticationFacade",
+            dependencies: [
+                "Networking",
+                "Caching",
+                .product(name: "Dependencies", package: "swift-composable-architecture")
+            ],
+            path: "Sources/Authentication"
+        ),
         .target(name: "VehiclesDataFacade", path: "Sources/VehiclesData"),
     ]
 )

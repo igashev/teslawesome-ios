@@ -7,7 +7,14 @@ let package = Package(
     name: "Models",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(name: "Models", targets: ["AuthenticationModels", "VehiclesDataModels"]),
+        .library(
+            name: "Models",
+            targets: [
+                "AuthenticationModels",
+                "VehiclesDataModels",
+                "VehicleCommandsModels"
+            ]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -18,5 +25,6 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(name: "AuthenticationModels", path: "Sources/Authentication"),
         .target(name: "VehiclesDataModels", path: "Sources/VehiclesData"),
+        .target(name: "VehicleCommandsModels", path: "Sources/VehicleCommands")
     ]
 )

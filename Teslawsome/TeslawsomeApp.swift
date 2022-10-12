@@ -10,27 +10,21 @@ import ComposableArchitecture
 import Networking
 import AuthenticationFacade
 
-struct AppState: Equatable {
-    var hasEverBeenAuthenticated: Bool = false
-}
-
-enum AppAction {
-    case didAppear
-}
-
-struct AppEnvironment {
-    let authenticationFacadeClient: AuthenticationFacadeClient
-    
-    static var live: Self {
-        .init(authenticationFacadeClient: .live)
+struct AppReducer: ReducerProtocol {
+    struct State: Equatable {
+        var hasEverBeenAuthenticated: Bool = false
     }
-}
 
-var appReducer: Reducer<AppState, AppAction, AppEnvironment> {
-    .init { state, action, environment in
+    enum Action {
+        case didAppear
+    }
+    
+    @Dependency(\.authenticationFacadeClient) var authenticationFacadeClient
+    
+    func reduce(into state: inout State, action: Action) -> Effect<Action, Never> {
         switch action {
         case .didAppear:
-            let hasEverBeenAuthenticated = environment.authenticationFacadeClient.cachedAuthenticationToken != nil
+            let hasEverBeenAuthenticated = authenticationFacadeClient.cachedAuthenticationToken != nil
             state.hasEverBeenAuthenticated = hasEverBeenAuthenticated
             return .none
         }
@@ -39,26 +33,24 @@ var appReducer: Reducer<AppState, AppAction, AppEnvironment> {
 
 @main
 struct TeslawsomeApp: App {
-    let store: Store<AppState, AppAction>
-    @ObservedObject var viewStore: ViewStore<AppState, AppAction>
+    @ObservedObject var viewStore: ViewStoreOf<AppReducer>
     
     init() {
         Networking.appendMiddleware(
-            AuthenticationTokenMiddleware(authenticationFacadeClient: .live),
+            AuthenticationTokenMiddleware(authenticationFacadeClient: .liveValue),
             LoggingMiddleware.live
         )
         
-        self.store = .init(initialState: .init(), reducer: appReducer, environment: .live)
-        self.viewStore = .init(store)
+        self.viewStore = .init(.init(initialState: .init(), reducer: AppReducer()), observe: { $0 })
     }
     
     var body: some Scene {
         WindowGroup {
             Group {
                 if viewStore.hasEverBeenAuthenticated {
-                    VehiclesListView(store: .init(initialState: .init(), reducer: vehiclesListReducer, environment: .live))
+                    VehiclesListView(store: .init(initialState: .init(), reducer: VehiclesList()))
                 } else {
-                    LoginView(store: .init(initialState: LoginState(), reducer: loginReducer, environment: .live))
+                    LoginView(store: .init(initialState: .init(), reducer: Login()))
                 }
             }
             .onAppear {

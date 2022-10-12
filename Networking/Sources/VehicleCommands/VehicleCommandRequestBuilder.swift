@@ -1,5 +1,6 @@
 import Networking
 import NetworkRequester
+import VehicleCommandsModels
 
 enum RequestBuilder {
     static func makeWakeUp(vehicleId: Int) -> URLRequestBuilder {
@@ -12,5 +13,13 @@ enum RequestBuilder {
     
     static func makeFlashLights(vehicleId: Int) -> URLRequestBuilder {
         .api(endpoint: Endpoint.flashLights(vehicleId: vehicleId), httpMethod: .post)
+    }
+    
+    static func makeActuateTrunk(vehicleId: Int, whichTrunk: WhichTrunk) -> URLRequestBuilder {
+        .api(
+            endpoint: Endpoint.actuateTrunk(vehicleId: vehicleId),
+            httpMethod: .post,
+            httpBody: .init(encodable: WhichTrunkRequest(whichTrunk: whichTrunk))
+        )
     }
 }
