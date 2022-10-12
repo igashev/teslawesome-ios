@@ -22,4 +22,12 @@ enum RequestBuilder {
             httpBody: .init(encodable: WhichTrunkRequest(whichTrunk: whichTrunk))
         )
     }
+    
+    static func makeDoorsUnlock(vehicleId: Int) -> URLRequestBuilder {
+        .api(endpoint: Endpoint.doorUnlock(vehicleId: vehicleId), httpMethod: .post)
+    }
+    
+    static func makeDoorsLock(vehicleId: Int) -> URLRequestBuilder {
+        .api(endpoint: Endpoint.doorLock(vehicleId: vehicleId), httpMethod: .post)
+    }
 }
