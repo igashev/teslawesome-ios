@@ -17,6 +17,13 @@
 		F063A64528B1723C00F5B9C5 /* TeslawsomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A64428B1723C00F5B9C5 /* TeslawsomeUITests.swift */; };
 		F063A64728B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A64628B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift */; };
 		F063A65328B176AF00F5B9C5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62B28B1723A00F5B9C5 /* LoginView.swift */; };
+		F06EDAE928F804CC0087E69A /* TeslawesomeWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDAE828F804CC0087E69A /* TeslawesomeWatchApp.swift */; };
+		F06EDAEB28F804CC0087E69A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDAEA28F804CC0087E69A /* ContentView.swift */; };
+		F06EDAED28F804CE0087E69A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F06EDAEC28F804CE0087E69A /* Assets.xcassets */; };
+		F06EDAF028F804CE0087E69A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F06EDAEF28F804CE0087E69A /* Preview Assets.xcassets */; };
+		F06EDAFA28F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDAF928F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift */; };
+		F06EDB0428F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */; };
+		F06EDB0628F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */; };
 		F08C2C3628F07E83003925DE /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3528F07E83003925DE /* Caching */; };
 		F08C2C3828F0BE7F003925DE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3728F0BE7F003925DE /* Utils.swift */; };
 		F08C2C3A28F0C3B8003925DE /* Facade in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3928F0C3B8003925DE /* Facade */; };
@@ -42,20 +49,44 @@
 			remoteGlobalIDString = F063A62528B1723A00F5B9C5;
 			remoteInfo = Teslawsome;
 		};
+		F06EDAF628F804CF0087E69A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F063A61E28B1723A00F5B9C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F06EDAE528F804CC0087E69A;
+			remoteInfo = "TeslawesomeWatch Watch App";
+		};
+		F06EDB0028F804CF0087E69A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F063A61E28B1723A00F5B9C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F06EDAE528F804CC0087E69A;
+			remoteInfo = "TeslawesomeWatch Watch App";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesListView.swift; sourceTree = "<group>"; };
-		F063A62628B1723A00F5B9C5 /* Teslawsome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslawsome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F063A62628B1723A00F5B9C5 /* Teslawesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslawesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeApp.swift; sourceTree = "<group>"; };
 		F063A62B28B1723A00F5B9C5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F063A62D28B1723B00F5B9C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F063A63028B1723B00F5B9C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F063A63628B1723C00F5B9C5 /* TeslawsomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawsomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F063A63628B1723C00F5B9C5 /* TeslawesomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F063A63A28B1723C00F5B9C5 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
-		F063A64028B1723C00F5B9C5 /* TeslawsomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawsomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F063A64028B1723C00F5B9C5 /* TeslawesomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F063A64428B1723C00F5B9C5 /* TeslawsomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeUITests.swift; sourceTree = "<group>"; };
 		F063A64628B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F06EDAE628F804CC0087E69A /* TeslawesomeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeslawesomeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06EDAE828F804CC0087E69A /* TeslawesomeWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatchApp.swift; sourceTree = "<group>"; };
+		F06EDAEA28F804CC0087E69A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F06EDAEC28F804CE0087E69A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F06EDAEF28F804CE0087E69A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F06EDAF528F804CE0087E69A /* TeslawesomeWatch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeslawesomeWatch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06EDAF928F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppTests.swift; sourceTree = "<group>"; };
+		F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeslawesomeWatch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F08C2C3728F0BE7F003925DE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F08C2C3B28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenNetworkingMiddleware.swift; sourceTree = "<group>"; };
 		F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCommandsView.swift; sourceTree = "<group>"; };
@@ -90,6 +121,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F06EDAE328F804CC0087E69A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAF228F804CE0087E69A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAFC28F804CF0087E69A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -106,6 +158,9 @@
 				F063A62828B1723A00F5B9C5 /* Teslawsome */,
 				F063A63928B1723C00F5B9C5 /* TeslawsomeTests */,
 				F063A64328B1723C00F5B9C5 /* TeslawsomeUITests */,
+				F06EDAE728F804CC0087E69A /* TeslawesomeWatch Watch App */,
+				F06EDAF828F804CF0087E69A /* TeslawesomeWatch Watch AppTests */,
+				F06EDB0228F804CF0087E69A /* TeslawesomeWatch Watch AppUITests */,
 				F063A62728B1723A00F5B9C5 /* Products */,
 				F02F809028F0687B00FF1018 /* Frameworks */,
 			);
@@ -114,9 +169,12 @@
 		F063A62728B1723A00F5B9C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F063A62628B1723A00F5B9C5 /* Teslawsome.app */,
-				F063A63628B1723C00F5B9C5 /* TeslawsomeTests.xctest */,
-				F063A64028B1723C00F5B9C5 /* TeslawsomeUITests.xctest */,
+				F063A62628B1723A00F5B9C5 /* Teslawesome.app */,
+				F063A63628B1723C00F5B9C5 /* TeslawesomeTests.xctest */,
+				F063A64028B1723C00F5B9C5 /* TeslawesomeUITests.xctest */,
+				F06EDAE628F804CC0087E69A /* TeslawesomeWatch.app */,
+				F06EDAF528F804CE0087E69A /* TeslawesomeWatch AppTests.xctest */,
+				F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,6 +220,42 @@
 			path = TeslawsomeUITests;
 			sourceTree = "<group>";
 		};
+		F06EDAE728F804CC0087E69A /* TeslawesomeWatch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				F06EDAE828F804CC0087E69A /* TeslawesomeWatchApp.swift */,
+				F06EDAEA28F804CC0087E69A /* ContentView.swift */,
+				F06EDAEC28F804CE0087E69A /* Assets.xcassets */,
+				F06EDAEE28F804CE0087E69A /* Preview Content */,
+			);
+			path = "TeslawesomeWatch Watch App";
+			sourceTree = "<group>";
+		};
+		F06EDAEE28F804CE0087E69A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F06EDAEF28F804CE0087E69A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F06EDAF828F804CF0087E69A /* TeslawesomeWatch Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F06EDAF928F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift */,
+			);
+			path = "TeslawesomeWatch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		F06EDB0228F804CF0087E69A /* TeslawesomeWatch Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */,
+				F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "TeslawesomeWatch Watch AppUITests";
+			sourceTree = "<group>";
+		};
 		F0AE24C328B3B95400B39486 /* AuthView */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,9 +276,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F063A62528B1723A00F5B9C5 /* Teslawsome */ = {
+		F063A62528B1723A00F5B9C5 /* Teslawesome */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F063A64A28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "Teslawsome" */;
+			buildConfigurationList = F063A64A28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "Teslawesome" */;
 			buildPhases = (
 				F063A62228B1723A00F5B9C5 /* Sources */,
 				F063A62328B1723A00F5B9C5 /* Frameworks */,
@@ -194,7 +288,7 @@
 			);
 			dependencies = (
 			);
-			name = Teslawsome;
+			name = Teslawesome;
 			packageProductDependencies = (
 				F0F9063828B35E3A00D771E5 /* ComposableArchitecture */,
 				F02F809128F0687B00FF1018 /* Models */,
@@ -203,12 +297,12 @@
 				F08C2C3928F0C3B8003925DE /* Facade */,
 			);
 			productName = Teslawsome;
-			productReference = F063A62628B1723A00F5B9C5 /* Teslawsome.app */;
+			productReference = F063A62628B1723A00F5B9C5 /* Teslawesome.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F063A63528B1723C00F5B9C5 /* TeslawsomeTests */ = {
+		F063A63528B1723C00F5B9C5 /* TeslawesomeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F063A64D28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawsomeTests" */;
+			buildConfigurationList = F063A64D28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawesomeTests" */;
 			buildPhases = (
 				F063A63228B1723C00F5B9C5 /* Sources */,
 				F063A63328B1723C00F5B9C5 /* Frameworks */,
@@ -219,14 +313,14 @@
 			dependencies = (
 				F063A63828B1723C00F5B9C5 /* PBXTargetDependency */,
 			);
-			name = TeslawsomeTests;
+			name = TeslawesomeTests;
 			productName = TeslawsomeTests;
-			productReference = F063A63628B1723C00F5B9C5 /* TeslawsomeTests.xctest */;
+			productReference = F063A63628B1723C00F5B9C5 /* TeslawesomeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F063A63F28B1723C00F5B9C5 /* TeslawsomeUITests */ = {
+		F063A63F28B1723C00F5B9C5 /* TeslawesomeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F063A65028B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawsomeUITests" */;
+			buildConfigurationList = F063A65028B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawesomeUITests" */;
 			buildPhases = (
 				F063A63C28B1723C00F5B9C5 /* Sources */,
 				F063A63D28B1723C00F5B9C5 /* Frameworks */,
@@ -237,9 +331,62 @@
 			dependencies = (
 				F063A64228B1723C00F5B9C5 /* PBXTargetDependency */,
 			);
-			name = TeslawsomeUITests;
+			name = TeslawesomeUITests;
 			productName = TeslawsomeUITests;
-			productReference = F063A64028B1723C00F5B9C5 /* TeslawsomeUITests.xctest */;
+			productReference = F063A64028B1723C00F5B9C5 /* TeslawesomeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F06EDAE528F804CC0087E69A /* TeslawesomeWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F06EDB0D28F804CF0087E69A /* Build configuration list for PBXNativeTarget "TeslawesomeWatch" */;
+			buildPhases = (
+				F06EDAE228F804CC0087E69A /* Sources */,
+				F06EDAE328F804CC0087E69A /* Frameworks */,
+				F06EDAE428F804CC0087E69A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TeslawesomeWatch;
+			productName = "TeslawesomeWatch Watch App";
+			productReference = F06EDAE628F804CC0087E69A /* TeslawesomeWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F06EDAF428F804CE0087E69A /* TeslawesomeWatch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F06EDB0E28F804CF0087E69A /* Build configuration list for PBXNativeTarget "TeslawesomeWatch AppTests" */;
+			buildPhases = (
+				F06EDAF128F804CE0087E69A /* Sources */,
+				F06EDAF228F804CE0087E69A /* Frameworks */,
+				F06EDAF328F804CE0087E69A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F06EDAF728F804CF0087E69A /* PBXTargetDependency */,
+			);
+			name = "TeslawesomeWatch AppTests";
+			productName = "TeslawesomeWatch Watch AppTests";
+			productReference = F06EDAF528F804CE0087E69A /* TeslawesomeWatch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F06EDAFE28F804CF0087E69A /* TeslawesomeWatch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F06EDB0F28F804CF0087E69A /* Build configuration list for PBXNativeTarget "TeslawesomeWatch AppUITests" */;
+			buildPhases = (
+				F06EDAFB28F804CF0087E69A /* Sources */,
+				F06EDAFC28F804CF0087E69A /* Frameworks */,
+				F06EDAFD28F804CF0087E69A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F06EDB0128F804CF0087E69A /* PBXTargetDependency */,
+			);
+			name = "TeslawesomeWatch AppUITests";
+			productName = "TeslawesomeWatch Watch AppUITests";
+			productReference = F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -249,7 +396,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					F063A62528B1723A00F5B9C5 = {
@@ -262,6 +409,17 @@
 					F063A63F28B1723C00F5B9C5 = {
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = F063A62528B1723A00F5B9C5;
+					};
+					F06EDAE528F804CC0087E69A = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					F06EDAF428F804CE0087E69A = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F06EDAE528F804CC0087E69A;
+					};
+					F06EDAFE28F804CF0087E69A = {
+						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F06EDAE528F804CC0087E69A;
 					};
 				};
 			};
@@ -281,9 +439,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F063A62528B1723A00F5B9C5 /* Teslawsome */,
-				F063A63528B1723C00F5B9C5 /* TeslawsomeTests */,
-				F063A63F28B1723C00F5B9C5 /* TeslawsomeUITests */,
+				F063A62528B1723A00F5B9C5 /* Teslawesome */,
+				F063A63528B1723C00F5B9C5 /* TeslawesomeTests */,
+				F063A63F28B1723C00F5B9C5 /* TeslawesomeUITests */,
+				F06EDAE528F804CC0087E69A /* TeslawesomeWatch */,
+				F06EDAF428F804CE0087E69A /* TeslawesomeWatch AppTests */,
+				F06EDAFE28F804CF0087E69A /* TeslawesomeWatch AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -306,6 +467,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F063A63E28B1723C00F5B9C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAE428F804CC0087E69A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06EDAF028F804CE0087E69A /* Preview Assets.xcassets in Resources */,
+				F06EDAED28F804CE0087E69A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAF328F804CE0087E69A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAFD28F804CF0087E69A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -347,18 +531,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F06EDAE228F804CC0087E69A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06EDAEB28F804CC0087E69A /* ContentView.swift in Sources */,
+				F06EDAE928F804CC0087E69A /* TeslawesomeWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAF128F804CE0087E69A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06EDAFA28F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F06EDAFB28F804CF0087E69A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06EDB0628F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift in Sources */,
+				F06EDB0428F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		F063A63828B1723C00F5B9C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F063A62528B1723A00F5B9C5 /* Teslawsome */;
+			target = F063A62528B1723A00F5B9C5 /* Teslawesome */;
 			targetProxy = F063A63728B1723C00F5B9C5 /* PBXContainerItemProxy */;
 		};
 		F063A64228B1723C00F5B9C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F063A62528B1723A00F5B9C5 /* Teslawsome */;
+			target = F063A62528B1723A00F5B9C5 /* Teslawesome */;
 			targetProxy = F063A64128B1723C00F5B9C5 /* PBXContainerItemProxy */;
+		};
+		F06EDAF728F804CF0087E69A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F06EDAE528F804CC0087E69A /* TeslawesomeWatch */;
+			targetProxy = F06EDAF628F804CF0087E69A /* PBXContainerItemProxy */;
+		};
+		F06EDB0128F804CF0087E69A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F06EDAE528F804CC0087E69A /* TeslawesomeWatch */;
+			targetProxy = F06EDB0028F804CF0087E69A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -485,7 +705,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Teslawsome/Preview Content\"";
-				DEVELOPMENT_TEAM = BV4N2F9SW9;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -498,7 +718,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.Teslawsome;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.Teslawesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -517,7 +737,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Teslawsome/Preview Content\"";
-				DEVELOPMENT_TEAM = BV4N2F9SW9;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -530,7 +750,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.Teslawsome;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.Teslawesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -548,11 +768,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BV4N2F9SW9;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawsomeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -568,11 +788,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BV4N2F9SW9;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawsomeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -587,10 +807,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BV4N2F9SW9;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawsomeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -605,15 +825,163 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BV4N2F9SW9;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawsomeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Teslawsome;
+			};
+			name = Release;
+		};
+		F06EDB0728F804CF0087E69A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TeslawesomeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TeslawesomeWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.igashev;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawesomeWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F06EDB0828F804CF0087E69A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TeslawesomeWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = TeslawesomeWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.igashev;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawesomeWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		F06EDB0928F804CF0087E69A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawesomeWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeslawesomeWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TeslawesomeWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F06EDB0A28F804CF0087E69A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawesomeWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TeslawesomeWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TeslawesomeWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		F06EDB0B28F804CF0087E69A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawesomeWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "TeslawesomeWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		F06EDB0C28F804CF0087E69A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5R5RWMF2B7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.TeslawesomeWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "TeslawesomeWatch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -629,7 +997,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F063A64A28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "Teslawsome" */ = {
+		F063A64A28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "Teslawesome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F063A64B28B1723C00F5B9C5 /* Debug */,
@@ -638,7 +1006,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F063A64D28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawsomeTests" */ = {
+		F063A64D28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawesomeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F063A64E28B1723C00F5B9C5 /* Debug */,
@@ -647,11 +1015,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F063A65028B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawsomeUITests" */ = {
+		F063A65028B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "TeslawesomeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F063A65128B1723C00F5B9C5 /* Debug */,
 				F063A65228B1723C00F5B9C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F06EDB0D28F804CF0087E69A /* Build configuration list for PBXNativeTarget "TeslawesomeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F06EDB0728F804CF0087E69A /* Debug */,
+				F06EDB0828F804CF0087E69A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F06EDB0E28F804CF0087E69A /* Build configuration list for PBXNativeTarget "TeslawesomeWatch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F06EDB0928F804CF0087E69A /* Debug */,
+				F06EDB0A28F804CF0087E69A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F06EDB0F28F804CF0087E69A /* Build configuration list for PBXNativeTarget "TeslawesomeWatch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F06EDB0B28F804CF0087E69A /* Debug */,
+				F06EDB0C28F804CF0087E69A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -59,3 +59,14 @@ struct TeslawsomeApp: App {
         }
     }
 }
+
+import AppIntents
+
+struct FlashLightsIntent: AppIntent {
+    static var title: LocalizedStringResource = "Flash Tesla lights"
+    
+    func perform() async throws -> some IntentResult & ProvidesDialog {
+        print("Coool")
+        return .result(dialog: "Ok COOl!")
+    }
+}
