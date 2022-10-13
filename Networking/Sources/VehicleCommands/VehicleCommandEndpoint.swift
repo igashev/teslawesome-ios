@@ -6,6 +6,7 @@ enum Endpoint: URLProviding {
     case flashLights(vehicleId: Int)
     case actuateTrunk(vehicleId: Int)
     case doorUnlock(vehicleId: Int), doorLock(vehicleId: Int)
+    case windowControl(vehicleId: Int)
     
     var url: String {
         switch self {
@@ -21,6 +22,8 @@ enum Endpoint: URLProviding {
             return "/api/1/vehicles/\(vehicleId)/command/door_unlock"
         case .doorLock(let vehicleId):
             return "/api/1/vehicles/\(vehicleId)/command/door_lock"
+        case .windowControl(let vehicleId):
+            return "/api/1/vehicles/\(vehicleId)/command/window_control"
         }
     }
 }

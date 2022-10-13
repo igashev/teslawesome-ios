@@ -100,6 +100,42 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 
                 return .didReceiveCommandResponse(taskResult)
             }
+        case .runCommand(.unlockDoors):
+            return .task { [vehicleId = state.vehicle.id] in
+                let taskResult = await TaskResult {
+                    return try await vehicleCommandsNetworkClient.unlockDoors(vehicleId: vehicleId)
+                }
+                
+                return .didReceiveCommandResponse(taskResult)
+            }
+        case .runCommand(.lockDoors):
+            return .task { [vehicleId = state.vehicle.id] in
+                let taskResult = await TaskResult {
+                    return try await vehicleCommandsNetworkClient.lockDoors(vehicleId: vehicleId)
+                }
+                
+                return .didReceiveCommandResponse(taskResult)
+            }
+        case .runCommand(.ventWindows):
+            return .task { [vehicleId = state.vehicle.id] in
+                let taskResult = await TaskResult {
+                    return try await vehicleCommandsNetworkClient.ventWindows(vehicleId: vehicleId)
+                }
+                
+                return .didReceiveCommandResponse(taskResult)
+            }
+        case .runCommand(.closeWindows):
+            return .task { [vehicleId = state.vehicle.id] in
+                let taskResult = await TaskResult {
+                    return try await vehicleCommandsNetworkClient.closeWindows(
+                        vehicleId: vehicleId,
+                        latitude: 42.6977,
+                        longitude: 23.3219
+                    )
+                }
+                
+                return .didReceiveCommandResponse(taskResult)
+            }
         }
     }
 }

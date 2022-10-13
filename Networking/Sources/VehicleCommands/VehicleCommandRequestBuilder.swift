@@ -30,4 +30,33 @@ enum RequestBuilder {
     static func makeDoorsLock(vehicleId: Int) -> URLRequestBuilder {
         .api(endpoint: Endpoint.doorLock(vehicleId: vehicleId), httpMethod: .post)
     }
+    
+    static func makeWindowControl(
+        vehicleId: Int,
+        command: WindowControlCommand,
+        latitude: Double?,
+        longitude: Double?
+    ) -> URLRequestBuilder {
+        .api(
+            endpoint: Endpoint.windowControl(vehicleId: vehicleId),
+            httpMethod: .post,
+            httpBody: .init(encodable: WindowControlRequest(
+                command: command,
+                latitude: latitude,
+                longitude: longitude
+            ))
+        )
+    }
+}
+
+struct WindowControlRequest: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case command
+        case latitude = "lat"
+        case longitude = "lon"
+    }
+    
+    let command: WindowControlCommand
+    let latitude: Double?
+    let longitude: Double?
 }
