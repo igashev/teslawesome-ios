@@ -33,5 +33,7 @@ let package = Package(
             path: "Sources/Authentication"
         ),
         .target(name: "VehiclesDataFacade", path: "Sources/VehiclesData"),
+        
+            .testTarget(name: "AuthenticationFacadeTests", dependencies: ["AuthenticationFacade"], path: "Tests/AuthenticationTests")
     ]
 )

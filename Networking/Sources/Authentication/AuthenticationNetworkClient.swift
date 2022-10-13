@@ -1,6 +1,7 @@
 import AuthenticationModels
 import NetworkRequester
 import Networking
+import Dependencies
 
 public struct AuthenticationNetworkClient {
     typealias GetAuthenticationToken = (String, String) async throws -> AuthenticationToken
@@ -26,8 +27,8 @@ public struct AuthenticationNetworkClient {
     }
 }
 
-public extension AuthenticationNetworkClient {
-    static var live: Self {
+extension AuthenticationNetworkClient: DependencyKey {
+    public static let liveValue: Self = {
         let asyncCaller = AsyncCaller(decoder: Networking.jsonDecoder, middleware: [LoggingMiddleware.live])
         return .init(
             getAuthenticationToken: { authorizationToken, codeVerifier in
@@ -39,5 +40,21 @@ public extension AuthenticationNetworkClient {
                 return try await asyncCaller.call(using: request)
             }
         )
+    }()
+    
+    #if DEBUG
+    public static let previewValue: Self = {
+        .init(
+            getAuthenticationToken: { _, _ in .stub },
+            refreshAuthenticationToken: { _ in .stub }
+        )
+    }()
+    #endif
+}
+
+extension DependencyValues {
+    public var authenticationNetworkClient: AuthenticationNetworkClient {
+        get { self[AuthenticationNetworkClient.self] }
+        set { self[AuthenticationNetworkClient.self] = newValue }
     }
 }

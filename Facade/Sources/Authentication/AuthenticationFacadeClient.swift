@@ -31,7 +31,6 @@ public struct AuthenticationFacadeClient {
     
     /// Refreshes the authorization token if expired.
     /// - Returns: Returns **nil** when there isn't a token stored yet. Returns the **current token** if not yet expired or a **refreshed** one otherwise.
-    ///
     public func refreshAuthenticationTokenIfNeeded() async throws -> AuthenticationToken? {
         guard let authenticationToken = cachedAuthenticationToken else {
             return nil
@@ -40,16 +39,50 @@ public struct AuthenticationFacadeClient {
         if authenticationToken.hasExpired {
             return try await refreshAuthenticationToken(refreshToken: authenticationToken.data.refreshToken)
         } else {
-            // no auth token stored or
-            // hasn't expired yet, then token is valid and can be used
             return authenticationToken.data
         }
+    }
+    
+    public func generateLoginURL(codeVerifier: String) -> URL? {
+        let teslaAuthDomain = "https://auth.tesla.com/oauth2/v3/authorize"
+        guard var urlComponents = URLComponents(string: teslaAuthDomain) else {
+            return nil
+        }
+        
+        let codeChallengeSHA256String = Utils.hashInSHA256(string: codeVerifier)
+        let codeChallengeBase64URLEncoded = Utils.encodeBase64URL(string: codeChallengeSHA256String)
+        let clientId = "ownerapi"
+        let redirectURL = "https://auth.tesla.com/void/callback"
+        let responseType = "code"
+        let scope = "openid email offline_access"
+        let state = Utils.randomlyGeneratedString(length: 10)
+        let codeChallengeMethod = "S256"
+        
+        urlComponents.queryItems = [
+            .init(name: "client_id", value: clientId),
+            .init(name: "redirect_uri", value: redirectURL),
+            .init(name: "response_type", value: responseType),
+            .init(name: "scope", value: scope),
+            .init(name: "state", value: state),
+            .init(name: "code_challenge", value: codeChallengeBase64URLEncoded),
+            .init(name: "code_challenge_method", value: codeChallengeMethod)
+        ]
+        
+        return urlComponents.url
+    }
+    
+    public func generateLoginCodeVerifier() -> String {
+        Utils.randomlyGeneratedString(length: 86)
+    }
+    
+    public func extractAuthorizationCodeFromURL(_ url: URL) -> String? {
+        Utils.extractQueryParameterValue(from: url, queryName: "code")
     }
 }
 
 extension AuthenticationFacadeClient: DependencyKey {
     public static var liveValue: Self = {
-        .init(networkClient: .live, cachingClient: .live)
+        .init(networkClient: .liveValue, cachingClient: .live)
     }()
 }
 

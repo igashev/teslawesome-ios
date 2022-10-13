@@ -12,17 +12,7 @@ import AuthenticationModels
 
 struct Login: ReducerProtocol {
     struct State: Equatable {
-        let teslaAuthDomain = "https://auth.tesla.com/oauth2/v3/authorize"
-        
-        let clientID = "ownerapi"
-        let redirectURL = "https://auth.tesla.com/void/callback"
-        let responseType = "code"
-        let scope = "openid email offline_access"
-    //    let state = "state" // some random thing
-        let loginHint = ""
-    //    let codeChallenge = ""
-        let codeChallengeMethod = "S256"
-        
+        var codeVerifier = ""
         @BindableState var fullTeslaAuthURL: URL?
         @BindableState var showVehicles: Bool = false
     }
@@ -30,80 +20,31 @@ struct Login: ReducerProtocol {
     enum Action: BindableAction {
         case didTapSignInWithTeslaButton
         case didReceiveAuthCodeURL(url: URL)
-        case requestBearerToken(authorizationCode: String, codeChallengeCode: String)
+        case requestBearerToken(authorizationCode: String, codeVerifier: String)
         case didReceiveBearerToken(TaskResult<AuthenticationToken>)
         case binding(BindingAction<State>)
     }
     
-    struct Environment {
-        let authenticationFacadeClient: AuthenticationFacadeClient
-        let challengeCodeVerifier: String
-        let generateRandomStringOfLength: (Int) -> String
-        let hashSHA256: (String) -> String
-        let encodeBase64URL: (String) -> String
-        let extractQueryParameter: (URL, String) -> String?
-        
-        static var live: Self {
-            .init(
-                authenticationFacadeClient: .liveValue,
-                challengeCodeVerifier: Utils.randomlyGeneratedString(lenght: 86),
-                generateRandomStringOfLength: Utils.randomlyGeneratedString(lenght:),
-                hashSHA256: Utils.hashInSHA256(string:),
-                encodeBase64URL: Utils.encodeBase64URL(string:),
-                extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:)
-            )
-        }
-        
-        static var stub: Self {
-            .init(
-                authenticationFacadeClient: .liveValue,
-                challengeCodeVerifier: Utils.randomlyGeneratedString(lenght: 86),
-                generateRandomStringOfLength: Utils.randomlyGeneratedString(lenght:),
-                hashSHA256: Utils.hashInSHA256(string:),
-                encodeBase64URL: Utils.encodeBase64URL(string:),
-                extractQueryParameter: Utils.extractQueryParameterValue(from:queryName:)
-            )
-        }
-    }
-    
-    let environment: Environment
-    
-    init(environment: Environment = .live) {
-        self.environment = environment
-    }
+    @Dependency(\.authenticationFacadeClient) var authenticationFacadeClient
     
     var body: some ReducerProtocol<State, Action> {
         BindingReducer()
         Reduce { state, action in
             switch action {
             case .didTapSignInWithTeslaButton:
-                let codeChallengeRandomString = environment.challengeCodeVerifier
-                let codeChallengeSHA256String = environment.hashSHA256(codeChallengeRandomString)
-                let codeChallengeBase64URLEncoded = environment.encodeBase64URL(codeChallengeSHA256String)
-                var urlComponents = URLComponents(string: state.teslaAuthDomain)
-                urlComponents?.queryItems = [
-                    .init(name: "client_id", value: state.clientID),
-                    .init(name: "redirect_uri", value: state.redirectURL),
-                    .init(name: "response_type", value: state.responseType),
-                    .init(name: "scope", value: state.scope),
-                    .init(name: "state", value: environment.generateRandomStringOfLength(10)),
-                    .init(name: "login_hint", value: state.loginHint),
-                    .init(name: "code_challenge", value: codeChallengeBase64URLEncoded),
-                    .init(name: "code_challenge_method", value: state.codeChallengeMethod)
-                ]
-                
-                state.fullTeslaAuthURL = urlComponents?.url
+                state.codeVerifier = authenticationFacadeClient.generateLoginCodeVerifier()
+                let loginUrl = authenticationFacadeClient.generateLoginURL(codeVerifier: state.codeVerifier)
+                state.fullTeslaAuthURL = loginUrl
                 return .none
             case .didReceiveAuthCodeURL(let url):
                 state.fullTeslaAuthURL = nil
                 
-                let authorizationCode = environment.extractQueryParameter(url, "code") ?? ""
-                let codeChallengeRandomString = environment.challengeCodeVerifier
-                return Effect(value: .requestBearerToken(authorizationCode: authorizationCode, codeChallengeCode: codeChallengeRandomString))
+                let authorizationCode = authenticationFacadeClient.extractAuthorizationCodeFromURL(url) ?? "" // maybe throw an error
+                return Effect(value: .requestBearerToken(authorizationCode: authorizationCode, codeVerifier: state.codeVerifier))
             case .requestBearerToken(let authorizationCode, let codeChallengeCode):
                 return .task {
                     let taskResult = await TaskResult {
-                        try await environment.authenticationFacadeClient.getAuthenticationToken(
+                        try await authenticationFacadeClient.getAuthenticationToken(
                             authorizationToken: authorizationCode,
                             codeVerifier: codeChallengeCode
                         )

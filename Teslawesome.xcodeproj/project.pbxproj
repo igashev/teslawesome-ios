@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		F02F809228F0687B00FF1018 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809128F0687B00FF1018 /* Models */; };
 		F02F809428F0688C00FF1018 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809328F0688C00FF1018 /* Networking */; };
+		F0354F2828F86E7100C9A1EC /* FlashLightsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0354F2728F86E7100C9A1EC /* FlashLightsIntent.swift */; };
 		F03E886128EF3A5E00DDA095 /* VehiclesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */; };
 		F063A62A28B1723A00F5B9C5 /* TeslawsomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */; };
 		F063A62E28B1723B00F5B9C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F063A62D28B1723B00F5B9C5 /* Assets.xcassets */; };
 		F063A63128B1723B00F5B9C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F063A63028B1723B00F5B9C5 /* Preview Assets.xcassets */; };
-		F063A63B28B1723C00F5B9C5 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A63A28B1723C00F5B9C5 /* UtilsTests.swift */; };
 		F063A64528B1723C00F5B9C5 /* TeslawsomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A64428B1723C00F5B9C5 /* TeslawsomeUITests.swift */; };
 		F063A64728B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A64628B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift */; };
 		F063A65328B176AF00F5B9C5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62B28B1723A00F5B9C5 /* LoginView.swift */; };
@@ -25,7 +25,6 @@
 		F06EDB0428F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */; };
 		F06EDB0628F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */; };
 		F08C2C3628F07E83003925DE /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3528F07E83003925DE /* Caching */; };
-		F08C2C3828F0BE7F003925DE /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3728F0BE7F003925DE /* Utils.swift */; };
 		F08C2C3A28F0C3B8003925DE /* Facade in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3928F0C3B8003925DE /* Facade */; };
 		F08C2C3C28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3B28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift */; };
 		F08C2C3E28F2D5C6003925DE /* VehicleCommandsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */; };
@@ -66,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F0354F2728F86E7100C9A1EC /* FlashLightsIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashLightsIntent.swift; sourceTree = "<group>"; };
 		F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesListView.swift; sourceTree = "<group>"; };
 		F063A62628B1723A00F5B9C5 /* Teslawesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslawesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeApp.swift; sourceTree = "<group>"; };
@@ -73,7 +73,6 @@
 		F063A62D28B1723B00F5B9C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F063A63028B1723B00F5B9C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F063A63628B1723C00F5B9C5 /* TeslawesomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F063A63A28B1723C00F5B9C5 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		F063A64028B1723C00F5B9C5 /* TeslawesomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F063A64428B1723C00F5B9C5 /* TeslawsomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeUITests.swift; sourceTree = "<group>"; };
 		F063A64628B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -87,7 +86,6 @@
 		F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeslawesomeWatch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F08C2C3728F0BE7F003925DE /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F08C2C3B28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenNetworkingMiddleware.swift; sourceTree = "<group>"; };
 		F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCommandsView.swift; sourceTree = "<group>"; };
 		F0AE24C428B3B96A00B39486 /* TeslaAuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslaAuthWebView.swift; sourceTree = "<group>"; };
@@ -152,6 +150,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F0354F2628F86E5600C9A1EC /* AppIntents */ = {
+			isa = PBXGroup;
+			children = (
+				F0354F2728F86E7100C9A1EC /* FlashLightsIntent.swift */,
+			);
+			path = AppIntents;
+			sourceTree = "<group>";
+		};
 		F063A61D28B1723A00F5B9C5 = {
 			isa = PBXGroup;
 			children = (
@@ -182,13 +188,13 @@
 		F063A62828B1723A00F5B9C5 /* Teslawesome */ = {
 			isa = PBXGroup;
 			children = (
+				F0354F2628F86E5600C9A1EC /* AppIntents */,
 				F0C3710528F404E800B654CA /* NetworkingExtensions */,
 				F0AE24C328B3B95400B39486 /* AuthView */,
 				F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */,
 				F063A62B28B1723A00F5B9C5 /* LoginView.swift */,
 				F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */,
 				F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */,
-				F08C2C3728F0BE7F003925DE /* Utils.swift */,
 				F063A62D28B1723B00F5B9C5 /* Assets.xcassets */,
 				F063A62F28B1723B00F5B9C5 /* Preview Content */,
 			);
@@ -206,7 +212,6 @@
 		F063A63928B1723C00F5B9C5 /* TeslawesomeTests */ = {
 			isa = PBXGroup;
 			children = (
-				F063A63A28B1723C00F5B9C5 /* UtilsTests.swift */,
 			);
 			path = TeslawesomeTests;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0354F2828F86E7100C9A1EC /* FlashLightsIntent.swift in Sources */,
 				F03E886128EF3A5E00DDA095 /* VehiclesListView.swift in Sources */,
 				F063A65328B176AF00F5B9C5 /* LoginView.swift in Sources */,
 				F0AE24C528B3B96A00B39486 /* TeslaAuthWebView.swift in Sources */,
@@ -510,7 +516,6 @@
 				F08C2C3E28F2D5C6003925DE /* VehicleCommandsView.swift in Sources */,
 				F063A62A28B1723A00F5B9C5 /* TeslawsomeApp.swift in Sources */,
 				F08C2C3C28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift in Sources */,
-				F08C2C3828F0BE7F003925DE /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,7 +523,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F063A63B28B1723C00F5B9C5 /* UtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
