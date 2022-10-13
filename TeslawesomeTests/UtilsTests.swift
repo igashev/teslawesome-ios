@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Teslawsome
+@testable import Teslawesome
 
 class TeslawsomeTests: XCTestCase {
     func testSHA256Hashing() {

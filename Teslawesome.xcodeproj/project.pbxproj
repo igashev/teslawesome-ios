@@ -155,9 +155,9 @@
 		F063A61D28B1723A00F5B9C5 = {
 			isa = PBXGroup;
 			children = (
-				F063A62828B1723A00F5B9C5 /* Teslawsome */,
-				F063A63928B1723C00F5B9C5 /* TeslawsomeTests */,
-				F063A64328B1723C00F5B9C5 /* TeslawsomeUITests */,
+				F063A62828B1723A00F5B9C5 /* Teslawesome */,
+				F063A63928B1723C00F5B9C5 /* TeslawesomeTests */,
+				F063A64328B1723C00F5B9C5 /* TeslawesomeUITests */,
 				F06EDAE728F804CC0087E69A /* TeslawesomeWatch Watch App */,
 				F06EDAF828F804CF0087E69A /* TeslawesomeWatch Watch AppTests */,
 				F06EDB0228F804CF0087E69A /* TeslawesomeWatch Watch AppUITests */,
@@ -179,7 +179,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F063A62828B1723A00F5B9C5 /* Teslawsome */ = {
+		F063A62828B1723A00F5B9C5 /* Teslawesome */ = {
 			isa = PBXGroup;
 			children = (
 				F0C3710528F404E800B654CA /* NetworkingExtensions */,
@@ -192,7 +192,7 @@
 				F063A62D28B1723B00F5B9C5 /* Assets.xcassets */,
 				F063A62F28B1723B00F5B9C5 /* Preview Content */,
 			);
-			path = Teslawsome;
+			path = Teslawesome;
 			sourceTree = "<group>";
 		};
 		F063A62F28B1723B00F5B9C5 /* Preview Content */ = {
@@ -203,21 +203,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		F063A63928B1723C00F5B9C5 /* TeslawsomeTests */ = {
+		F063A63928B1723C00F5B9C5 /* TeslawesomeTests */ = {
 			isa = PBXGroup;
 			children = (
 				F063A63A28B1723C00F5B9C5 /* UtilsTests.swift */,
 			);
-			path = TeslawsomeTests;
+			path = TeslawesomeTests;
 			sourceTree = "<group>";
 		};
-		F063A64328B1723C00F5B9C5 /* TeslawsomeUITests */ = {
+		F063A64328B1723C00F5B9C5 /* TeslawesomeUITests */ = {
 			isa = PBXGroup;
 			children = (
 				F063A64428B1723C00F5B9C5 /* TeslawsomeUITests.swift */,
 				F063A64628B1723C00F5B9C5 /* TeslawsomeUITestsLaunchTests.swift */,
 			);
-			path = TeslawsomeUITests;
+			path = TeslawesomeUITests;
 			sourceTree = "<group>";
 		};
 		F06EDAE728F804CC0087E69A /* TeslawesomeWatch Watch App */ = {
@@ -423,7 +423,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F063A62128B1723A00F5B9C5 /* Build configuration list for PBXProject "Teslawsome" */;
+			buildConfigurationList = F063A62128B1723A00F5B9C5 /* Build configuration list for PBXProject "Teslawesome" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -704,7 +704,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Teslawsome/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Teslawesome/Preview Content\"";
 				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -736,7 +736,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Teslawsome/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Teslawesome/Preview Content\"";
 				DEVELOPMENT_TEAM = 5R5RWMF2B7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -777,7 +777,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teslawsome.app/Teslawsome";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teslawesome.app/Teslawesome";
 			};
 			name = Debug;
 		};
@@ -797,7 +797,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teslawsome.app/Teslawsome";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teslawesome.app/Teslawesome";
 			};
 			name = Release;
 		};
@@ -815,7 +815,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Teslawsome;
 			};
 			name = Debug;
 		};
@@ -833,7 +832,6 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Teslawsome;
 			};
 			name = Release;
 		};
@@ -988,7 +986,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F063A62128B1723A00F5B9C5 /* Build configuration list for PBXProject "Teslawsome" */ = {
+		F063A62128B1723A00F5B9C5 /* Build configuration list for PBXProject "Teslawesome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F063A64828B1723C00F5B9C5 /* Debug */,

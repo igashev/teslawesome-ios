@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:Teslawsome.xcodeproj">
+      location = "container:/Users/ivaylo.gashev/Documents/Xcode/Teslawsome/Teslawesome.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Caching">

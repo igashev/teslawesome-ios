@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F06EDAE528F804CC0087E69A"
-               BuildableName = "TeslawesomeWatch.app"
-               BlueprintName = "TeslawesomeWatch"
-               ReferencedContainer = "container:Teslawsome.xcodeproj">
+               BlueprintIdentifier = "F063A62528B1723A00F5B9C5"
+               BuildableName = "Teslawesome.app"
+               BlueprintName = "Teslawesome"
+               ReferencedContainer = "container:Teslawesome.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F06EDAF428F804CE0087E69A"
-               BuildableName = "TeslawesomeWatch AppTests.xctest"
-               BlueprintName = "TeslawesomeWatch AppTests"
-               ReferencedContainer = "container:Teslawsome.xcodeproj">
+               BlueprintIdentifier = "F063A63528B1723C00F5B9C5"
+               BuildableName = "TeslawesomeTests.xctest"
+               BlueprintName = "TeslawesomeTests"
+               ReferencedContainer = "container:Teslawesome.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,10 +54,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F06EDAE528F804CC0087E69A"
-            BuildableName = "TeslawesomeWatch.app"
-            BlueprintName = "TeslawesomeWatch"
-            ReferencedContainer = "container:Teslawsome.xcodeproj">
+            BlueprintIdentifier = "F063A62528B1723A00F5B9C5"
+            BuildableName = "Teslawesome.app"
+            BlueprintName = "Teslawesome"
+            ReferencedContainer = "container:Teslawesome.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F06EDAE528F804CC0087E69A"
-            BuildableName = "TeslawesomeWatch.app"
-            BlueprintName = "TeslawesomeWatch"
-            ReferencedContainer = "container:Teslawsome.xcodeproj">
+            BlueprintIdentifier = "F063A62528B1723A00F5B9C5"
+            BuildableName = "Teslawesome.app"
+            BlueprintName = "Teslawesome"
+            ReferencedContainer = "container:Teslawesome.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
