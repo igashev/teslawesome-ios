@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F063A63528B1723C00F5B9C5"
+               BlueprintIdentifier = "F0354F2E28F94A8500C9A1EC"
                BuildableName = "TeslawesomeTests.xctest"
                BlueprintName = "TeslawesomeTests"
                ReferencedContainer = "container:Teslawesome.xcodeproj">
