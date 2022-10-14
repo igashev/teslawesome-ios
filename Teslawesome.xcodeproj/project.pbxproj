@@ -70,6 +70,7 @@
 		F0354F2F28F94A8500C9A1EC /* TeslawesomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0354F3128F94A8500C9A1EC /* TeslawesomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeTests.swift; sourceTree = "<group>"; };
 		F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesListView.swift; sourceTree = "<group>"; };
+		F05F23EE28F94DE800A90DD7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F063A62628B1723A00F5B9C5 /* Teslawesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslawesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeApp.swift; sourceTree = "<group>"; };
 		F063A62B28B1723A00F5B9C5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 		F063A61D28B1723A00F5B9C5 = {
 			isa = PBXGroup;
 			children = (
+				F05F23EE28F94DE800A90DD7 /* README.md */,
 				F063A62828B1723A00F5B9C5 /* Teslawesome */,
 				F0354F3028F94A8500C9A1EC /* TeslawesomeTests */,
 				F063A64328B1723C00F5B9C5 /* TeslawesomeUITests */,
