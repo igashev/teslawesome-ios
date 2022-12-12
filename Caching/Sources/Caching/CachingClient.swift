@@ -1,7 +1,7 @@
 import Foundation
 import AuthenticationModels
+import KeychainAccess
 
-// TODO: - Migrate this to keychain later
 public struct CachingClient {
     public let storeToken: (AuthenticationToken) -> ()
     public let getToken: () -> (CacheContainer<AuthenticationToken>?)
@@ -9,17 +9,23 @@ public struct CachingClient {
 
 public extension CachingClient {
     static var live: Self {
-        let userDefaults = UserDefaults.standard
         let encoder = JSONEncoder()
         let decoder = JSONDecoder()
+        
+        let keychain = Keychain(service: "com.ivaylogashev.Teslawesome")
+            .synchronizable(true)
+            .accessibility(.afterFirstUnlock)
+        
+        let tokenKey = "authentication_token"
+        
         return .init(
             storeToken: { tokenToStore in
                 let container = CacheContainer(data: tokenToStore, dateCached: .now)
                 let encodedToken = try? encoder.encode(container)
-                userDefaults.set(encodedToken, forKey: "authentication_token")
+                keychain[data: tokenKey] = encodedToken
             },
             getToken: {
-                guard let tokenData = userDefaults.data(forKey: "authentication_token") else {
+                guard let tokenData = keychain[data: tokenKey] else {
                     return nil
                 }
                 
