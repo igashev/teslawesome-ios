@@ -3,29 +3,35 @@ import VehiclesDataModels
 import Dependencies
 
 public struct VehiclesDataNetworkClient {
-    typealias GetVehicles = () async throws -> VehiclesResponse
+    typealias Vehicles = () async throws -> VehiclesBasicResponse
+    typealias VehicleData = (Int) async throws -> VehicleContainerResponse<VehicleFull>
     
-    let getVehicles: GetVehicles
+    let getVehicles: Vehicles
+    let getVehicleData: VehicleData
     
-    init(getVehicles: @escaping GetVehicles) {
-        self.getVehicles = getVehicles
+    public func getVehicles() async throws -> VehiclesBasicResponse {
+        try await getVehicles()
     }
     
-    public func getVehicles() async throws -> VehiclesResponse {
-        try await getVehicles()
+    public func getVehicleData(vehicleId: Int) async throws -> VehicleContainerResponse<VehicleFull> {
+        try await getVehicleData(vehicleId)
     }
 }
 
 extension VehiclesDataNetworkClient: DependencyKey {
-    public static var liveValue: Self = {
+    public static let liveValue: Self = {
         let asyncCaller = AsyncCaller.standard
         return .init(
-            getVehicles: { try await asyncCaller.call(using: RequestBuilder.makeGetVehicles()) }
+            getVehicles: { try await asyncCaller.call(using: RequestBuilder.makeGetVehicles()) },
+            getVehicleData: { try await asyncCaller.call(using: RequestBuilder.makeGetVehicleData(vehicleId: $0)) }
         )
     }()
     
     #if DEBUG
-    public static let previewValue: Self = .init { .stub }
+    public static let previewValue: Self = .init(
+        getVehicles: { .stub },
+        getVehicleData: { _ in VehicleContainerResponse<VehicleFull>.stub }
+    )
     #endif
 }
 

@@ -13,8 +13,9 @@ import VehiclesDataModels
 
 struct VehicleCommandsFeature: ReducerProtocol {
     struct State: Equatable {
-        let vehicle: Vehicle
-        let commands: [VehicleCommand] = VehicleCommand.Kind.allCases.map(VehicleCommand.init)
+        let vehicleId: Int
+        let commands: [VehicleCommand] = VehicleCommand.allCases
+        let quickActionsCommands: [VehicleCommand] = [.actuateFrunk, .actuateTrunk, .flashLights, .honkHorn]
         
         let wakeUpMaxRetriesCount = 10
         let wakeUpIntervalBetweenRetriesInSeconds: TimeInterval = 3
@@ -24,8 +25,8 @@ struct VehicleCommandsFeature: ReducerProtocol {
     enum Action {
         case didAppear
         case wakeUp
-        case didWakeUp(TaskResult<VehicleResponse>)
-        case runCommand(VehicleCommand.Kind)
+        case didWakeUp(TaskResult<VehicleContainerResponse<VehicleBasic>>)
+        case runCommand(VehicleCommand)
         case didReceiveCommandResponse(TaskResult<VehicleCommandContainerResponse>)
     }
     
@@ -36,8 +37,12 @@ struct VehicleCommandsFeature: ReducerProtocol {
         case .didAppear:
             return Effect(value: .wakeUp)
         case .wakeUp:
-            return .task { [vehicleId = state.vehicle.id, wakeUpAttempts = state.wakeUpMaxRetriesCount, wakeUpAttemptsInterval = state.wakeUpIntervalBetweenRetriesInSeconds] in
-                let taskResult = await TaskResult<VehicleResponse> {
+            return .task { [
+                vehicleId = state.vehicleId,
+                wakeUpAttempts = state.wakeUpMaxRetriesCount,
+                wakeUpAttemptsInterval = state.wakeUpIntervalBetweenRetriesInSeconds
+            ] in
+                let taskResult = await TaskResult<VehicleContainerResponse<VehicleBasic>> {
                     try await Task.retrying(
                         maxRetryCount: wakeUpAttempts,
                         retryDelayInSeconds: wakeUpAttemptsInterval,
@@ -63,7 +68,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
             print(error)
             return .none
         case .runCommand(.honkHorn):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     try await vehicleCommandsNetworkClient.honkHorn(vehicleId: vehicleId)
                 }
@@ -71,7 +76,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.flashLights):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.flashLights(vehicleId: vehicleId)
                 }
@@ -79,7 +84,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.actuateFrunk):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.actuateTrunk(
                         vehicleId: vehicleId,
@@ -90,7 +95,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.actuateTrunk):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.actuateTrunk(
                         vehicleId: vehicleId,
@@ -101,7 +106,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.unlockDoors):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.unlockDoors(vehicleId: vehicleId)
                 }
@@ -109,7 +114,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.lockDoors):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.lockDoors(vehicleId: vehicleId)
                 }
@@ -117,7 +122,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.ventWindows):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.ventWindows(vehicleId: vehicleId)
                 }
@@ -125,7 +130,7 @@ struct VehicleCommandsFeature: ReducerProtocol {
                 return .didReceiveCommandResponse(taskResult)
             }
         case .runCommand(.closeWindows):
-            return .task { [vehicleId = state.vehicle.id] in
+            return .task { [vehicleId = state.vehicleId] in
                 let taskResult = await TaskResult {
                     return try await vehicleCommandsNetworkClient.closeWindows(
                         vehicleId: vehicleId,
@@ -143,37 +148,71 @@ struct VehicleCommandsFeature: ReducerProtocol {
 struct VehicleCommandsView: View {
     @ObservedObject var viewStore: ViewStoreOf<VehicleCommandsFeature>
     
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
+    
+    private let columns: [GridItem] = .init(
+        repeating: .init(.flexible(), alignment: .top),
+        count: 5
+    )
+    
+    private var isLandscape: Bool {
+        verticalSizeClass == .compact
+    }
     
     init(store: StoreOf<VehicleCommandsFeature>) {
         self.viewStore = .init(store, observe: { $0 })
     }
     
     var body: some View {
-        ScrollView {
-            if viewStore.state.isVehicleWokenUp {
-                LazyVGrid(columns: columns, spacing: 40) {
-                    ForEach(viewStore.commands, id: \.kind) { command in
+        Group {
+            if isLandscape {
+                HStack(spacing: 20) {
+                    ForEach(viewStore.state.quickActionsCommands) { command in
                         Button(
                             action: {
-                                viewStore.send(.runCommand(command.kind))
+                                viewStore.send(.runCommand(command))
                             },
                             label: {
                                 VStack {
-                                    Image(systemName: "hand.wave")
-                                    Text(String(describing: command.kind))
+                                    Image(systemName: command.systemImage)
+                                    Text(String(describing: command))
                                 }
+                                .frame(maxWidth: .infinity)
+                                .font(.largeTitle)
                             }
                         )
-                        .font(.largeTitle)
+                        .buttonStyle(.borderedProminent)
                     }
                 }
             } else {
-                VStack {
-                    Text("Vehicle is waking up...")
-                    ProgressView()
+                ScrollView {
+                    if viewStore.state.isVehicleWokenUp {
+                        LazyVGrid(columns: columns, spacing: 25) {
+                            ForEach(viewStore.commands) { command in
+                                Button(
+                                    action: {
+                                        viewStore.send(.runCommand(command))
+                                    },
+                                    label: {
+                                        VStack() {
+                                            Image(systemName: command.systemImage)
+                                                .font(.title)
+                                            Text(String(describing: command))
+                                                .font(.caption)
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    } else {
+                        VStack {
+                            Text("Vehicle is waking up...")
+                            ProgressView()
+                        }
+                    }
                 }
             }
+            
         }
         .onAppear {
             viewStore.send(.didAppear)
@@ -184,7 +223,7 @@ struct VehicleCommandsView: View {
 struct VehicleCommandsView_Previews: PreviewProvider {
     static var previews: some View {
         VehicleCommandsView(store: .init(
-            initialState: .init(vehicle: .stub),
+            initialState: .init(vehicleId: VehicleBasic.stub.id),
             reducer: VehicleCommandsFeature())
         )
     }

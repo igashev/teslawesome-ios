@@ -4,7 +4,7 @@ import VehicleCommandsModels
 import Dependencies
 
 public struct VehicleCommandsNetworkClient {
-    typealias WakeUp = (Int) async throws -> VehicleResponse
+    typealias WakeUp = (Int) async throws -> VehicleContainerResponse<VehicleBasic>
     typealias HonkHorn = (Int) async throws -> VehicleCommandContainerResponse
     typealias FlashLights = (Int) async throws -> VehicleCommandContainerResponse
     typealias ActuateTrunk = (Int, WhichTrunk) async throws -> VehicleCommandContainerResponse
@@ -42,7 +42,7 @@ public struct VehicleCommandsNetworkClient {
         self.closeWindows = closeWindows
     }
     
-    public func wakeUp(vehicleId: Int) async throws -> VehicleResponse {
+    public func wakeUp(vehicleId: Int) async throws -> VehicleContainerResponse<VehicleBasic> {
         try await wakeUp(vehicleId)
     }
     
@@ -115,7 +115,10 @@ extension VehicleCommandsNetworkClient: DependencyKey {
     #if DEBUG
     public static let previewValue: Self = {
         .init(
-            wakeUp: { _ in VehicleResponse.stub },
+            wakeUp: { _ in
+                try await Task.sleep(until: .now + .seconds(0.5), clock: .continuous)
+                return VehicleContainerResponse<VehicleBasic>.stub
+            },
             honkHorn: { _ in .init(response: .init(reason: "", result: true)) },
             flashLights: { _ in .init(response: .init(reason: "", result: true)) },
             actuateTrunk: { _, _ in .init(response: .init(reason: "", result: true)) },

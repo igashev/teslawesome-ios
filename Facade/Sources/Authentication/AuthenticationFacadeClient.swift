@@ -5,7 +5,11 @@ import Caching
 import Dependencies
 
 public struct AuthenticationFacadeClient {
+    #if DEBUG
+    var networkClient: AuthenticationNetworkClient
+    #else
     let networkClient: AuthenticationNetworkClient
+    #endif
     let cachingClient: CachingClient
     
     public var cachedAuthenticationToken: CacheContainer<AuthenticationToken>? {
@@ -81,9 +85,11 @@ public struct AuthenticationFacadeClient {
 }
 
 extension AuthenticationFacadeClient: DependencyKey {
-    public static var liveValue: Self = {
-        .init(networkClient: .liveValue, cachingClient: .live)
-    }()
+    public static let liveValue: Self = .init(networkClient: .liveValue, cachingClient: .live)
+    
+    #if DEBUG
+    public static let previewValue: Self = .init(networkClient: .previewValue, cachingClient: .live)
+    #endif
 }
 
 extension DependencyValues {

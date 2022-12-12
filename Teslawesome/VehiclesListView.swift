@@ -12,13 +12,13 @@ import VehiclesDataNetworking
 
 struct VehiclesList: ReducerProtocol {
     struct State: Equatable {
-        @BindableState var selectedVehicle: Vehicle? = nil
-        var vehicles: [Vehicle] = []
+        @BindableState var selectedVehicle: VehicleBasic? = nil
+        var vehicles: [VehicleBasic] = []
     }
 
     enum Action: BindableAction {
         case didAppear
-        case didReceiveVehiclesResponse(TaskResult<VehiclesResponse>)
+        case didReceiveVehiclesResponse(TaskResult<VehiclesBasicResponse>)
         case binding(BindingAction<State>)
     }
     
@@ -58,7 +58,7 @@ struct VehiclesListView: View {
     
     var body: some View {
         NavigationSplitView {
-            List(viewStore.vehicles, id: \.self, selection: viewStore.binding(\.$selectedVehicle)) { vehicle in
+            List(viewStore.vehicles, selection: viewStore.binding(\.$selectedVehicle)) { vehicle in
                 NavigationLink(value: vehicle) {
                     VStack(alignment: .leading) {
                         Text(vehicle.displayName)
@@ -70,10 +70,12 @@ struct VehiclesListView: View {
             .navigationTitle("Your vehicles")
         } detail: {
             if let selectedVehicle = viewStore.state.selectedVehicle {
-                VehicleCommandsView(store: .init(
-                    initialState: .init(vehicle: selectedVehicle),
-                    reducer: VehicleCommandsFeature())
-                )
+                VehicleOverviewView(store: .init(
+                    initialState: .init(selectedVehicleBasic: selectedVehicle),
+                    reducer: VehicleOverview()
+                        .dependency(\.vehiclesDataNetworkClient, .previewValue)
+                        .dependency(\.vehicleCommandsNetworkClient, .previewValue)
+                ))
             } else {
                 Text("Pick a vehicle")
             }

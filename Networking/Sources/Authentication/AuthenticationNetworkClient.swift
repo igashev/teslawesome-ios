@@ -8,7 +8,7 @@ public struct AuthenticationNetworkClient {
     typealias RefreshAuthenticationToken = (String) async throws -> AuthenticationToken
     
     let getAuthenticationToken: GetAuthenticationToken
-    let refreshAuthenticationToken: RefreshAuthenticationToken
+    var refreshAuthenticationToken: RefreshAuthenticationToken
     
     init(
         getAuthenticationToken: @escaping GetAuthenticationToken,

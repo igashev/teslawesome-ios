@@ -1,11 +1,11 @@
-public struct VehiclesResponse: Decodable {
-    public let response: [Vehicle]
+public struct VehiclesBasicResponse: Decodable {
+    public let response: [VehicleBasic]
     public let count: Int
 }
 
 #if DEBUG
 import Foundation
-public extension VehiclesResponse {
+public extension VehiclesBasicResponse {
     static var stub: Self {
         let json = """
         {

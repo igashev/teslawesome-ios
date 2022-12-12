@@ -10,9 +10,8 @@
 		F02F809228F0687B00FF1018 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809128F0687B00FF1018 /* Models */; };
 		F02F809428F0688C00FF1018 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809328F0688C00FF1018 /* Networking */; };
 		F0354F2828F86E7100C9A1EC /* FlashLightsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0354F2728F86E7100C9A1EC /* FlashLightsIntent.swift */; };
-		F0354F3228F94A8500C9A1EC /* TeslawesomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0354F3128F94A8500C9A1EC /* TeslawesomeTests.swift */; };
 		F03E886128EF3A5E00DDA095 /* VehiclesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */; };
-		F063A62A28B1723A00F5B9C5 /* TeslawsomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */; };
+		F063A62A28B1723A00F5B9C5 /* TeslawesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62928B1723A00F5B9C5 /* TeslawesomeApp.swift */; };
 		F063A62E28B1723B00F5B9C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F063A62D28B1723B00F5B9C5 /* Assets.xcassets */; };
 		F063A63128B1723B00F5B9C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F063A63028B1723B00F5B9C5 /* Preview Assets.xcassets */; };
 		F063A64528B1723C00F5B9C5 /* TeslawsomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A64428B1723C00F5B9C5 /* TeslawsomeUITests.swift */; };
@@ -25,23 +24,22 @@
 		F06EDAFA28F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDAF928F804CF0087E69A /* TeslawesomeWatch_Watch_AppTests.swift */; };
 		F06EDB0428F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */; };
 		F06EDB0628F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */; };
+		F07FCEFF29157D6F0076CFF9 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FCEFE29157D6F0076CFF9 /* ViewExtensions.swift */; };
+		F07FCF012918529A0076CFF9 /* VehicleCommandExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FCF002918529A0076CFF9 /* VehicleCommandExtension.swift */; };
 		F08C2C3628F07E83003925DE /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3528F07E83003925DE /* Caching */; };
 		F08C2C3A28F0C3B8003925DE /* Facade in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3928F0C3B8003925DE /* Facade */; };
 		F08C2C3C28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3B28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift */; };
 		F08C2C3E28F2D5C6003925DE /* VehicleCommandsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */; };
+		F09540C4290AC48B00391E00 /* VehicleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09540C3290AC48B00391E00 /* VehicleExtensions.swift */; };
 		F0AE24C528B3B96A00B39486 /* TeslaAuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AE24C428B3B96A00B39486 /* TeslaAuthWebView.swift */; };
+		F0C32E2629350EA7000D1FC6 /* TeslawesomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0354F3128F94A8500C9A1EC /* TeslawesomeTests.swift */; };
 		F0C3710728F4C14200B654CA /* TaskRetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C3710628F4C14200B654CA /* TaskRetry.swift */; };
+		F0E471AF29003948006BCC68 /* VehicleOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E471AE29003948006BCC68 /* VehicleOverviewView.swift */; };
+		F0F468F828FF3A5D001BF6F3 /* VehicleChargingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F468F728FF3A5D001BF6F3 /* VehicleChargingView.swift */; };
 		F0F9063928B35E3A00D771E5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = F0F9063828B35E3A00D771E5 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F0354F3328F94A8500C9A1EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F063A61E28B1723A00F5B9C5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F063A62528B1723A00F5B9C5;
-			remoteInfo = Teslawesome;
-		};
 		F063A64128B1723C00F5B9C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F063A61E28B1723A00F5B9C5 /* Project object */;
@@ -63,16 +61,22 @@
 			remoteGlobalIDString = F06EDAE528F804CC0087E69A;
 			remoteInfo = "TeslawesomeWatch Watch App";
 		};
+		F0C32E2129350D9A000D1FC6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F063A61E28B1723A00F5B9C5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F063A62528B1723A00F5B9C5;
+			remoteInfo = Teslawesome;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F0354F2728F86E7100C9A1EC /* FlashLightsIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashLightsIntent.swift; sourceTree = "<group>"; };
-		F0354F2F28F94A8500C9A1EC /* TeslawesomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0354F3128F94A8500C9A1EC /* TeslawesomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeTests.swift; sourceTree = "<group>"; };
 		F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesListView.swift; sourceTree = "<group>"; };
 		F05F23EE28F94DE800A90DD7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F063A62628B1723A00F5B9C5 /* Teslawesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teslawesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawsomeApp.swift; sourceTree = "<group>"; };
+		F063A62928B1723A00F5B9C5 /* TeslawesomeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeApp.swift; sourceTree = "<group>"; };
 		F063A62B28B1723A00F5B9C5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F063A62D28B1723B00F5B9C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F063A63028B1723B00F5B9C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -89,20 +93,19 @@
 		F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TeslawesomeWatch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06EDB0328F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F07FCEFE29157D6F0076CFF9 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		F07FCF002918529A0076CFF9 /* VehicleCommandExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCommandExtension.swift; sourceTree = "<group>"; };
 		F08C2C3B28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenNetworkingMiddleware.swift; sourceTree = "<group>"; };
 		F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCommandsView.swift; sourceTree = "<group>"; };
+		F09540C3290AC48B00391E00 /* VehicleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleExtensions.swift; sourceTree = "<group>"; };
 		F0AE24C428B3B96A00B39486 /* TeslaAuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeslaAuthWebView.swift; sourceTree = "<group>"; };
+		F0C32E1D29350D9A000D1FC6 /* TeslawesomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeslawesomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C3710628F4C14200B654CA /* TaskRetry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRetry.swift; sourceTree = "<group>"; };
+		F0E471AE29003948006BCC68 /* VehicleOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleOverviewView.swift; sourceTree = "<group>"; };
+		F0F468F728FF3A5D001BF6F3 /* VehicleChargingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleChargingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F0354F2C28F94A8500C9A1EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F063A62328B1723A00F5B9C5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +140,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F06EDAFC28F804CF0087E69A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0C32E1A29350D9A000D1FC6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -192,7 +202,7 @@
 				F06EDAE628F804CC0087E69A /* TeslawesomeWatch.app */,
 				F06EDAF528F804CE0087E69A /* TeslawesomeWatch AppTests.xctest */,
 				F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */,
-				F0354F2F28F94A8500C9A1EC /* TeslawesomeTests.xctest */,
+				F0C32E1D29350D9A000D1FC6 /* TeslawesomeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,12 +210,15 @@
 		F063A62828B1723A00F5B9C5 /* Teslawesome */ = {
 			isa = PBXGroup;
 			children = (
+				F09540C2290AC47100391E00 /* Extensions */,
 				F0354F2628F86E5600C9A1EC /* AppIntents */,
 				F0C3710528F404E800B654CA /* NetworkingExtensions */,
 				F0AE24C328B3B95400B39486 /* AuthView */,
-				F063A62928B1723A00F5B9C5 /* TeslawsomeApp.swift */,
+				F063A62928B1723A00F5B9C5 /* TeslawesomeApp.swift */,
 				F063A62B28B1723A00F5B9C5 /* LoginView.swift */,
+				F0E471AE29003948006BCC68 /* VehicleOverviewView.swift */,
 				F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */,
+				F0F468F728FF3A5D001BF6F3 /* VehicleChargingView.swift */,
 				F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */,
 				F063A62D28B1723B00F5B9C5 /* Assets.xcassets */,
 				F063A62F28B1723B00F5B9C5 /* Preview Content */,
@@ -266,6 +279,16 @@
 			path = "TeslawesomeWatch Watch AppUITests";
 			sourceTree = "<group>";
 		};
+		F09540C2290AC47100391E00 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F09540C3290AC48B00391E00 /* VehicleExtensions.swift */,
+				F07FCF002918529A0076CFF9 /* VehicleCommandExtension.swift */,
+				F07FCEFE29157D6F0076CFF9 /* ViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F0AE24C328B3B95400B39486 /* AuthView */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,24 +309,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F0354F2E28F94A8500C9A1EC /* TeslawesomeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F0354F3528F94A8600C9A1EC /* Build configuration list for PBXNativeTarget "TeslawesomeTests" */;
-			buildPhases = (
-				F0354F2B28F94A8500C9A1EC /* Sources */,
-				F0354F2C28F94A8500C9A1EC /* Frameworks */,
-				F0354F2D28F94A8500C9A1EC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F0354F3428F94A8500C9A1EC /* PBXTargetDependency */,
-			);
-			name = TeslawesomeTests;
-			productName = TeslawesomeTests;
-			productReference = F0354F2F28F94A8500C9A1EC /* TeslawesomeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		F063A62528B1723A00F5B9C5 /* Teslawesome */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F063A64A28B1723C00F5B9C5 /* Build configuration list for PBXNativeTarget "Teslawesome" */;
@@ -399,6 +404,24 @@
 			productReference = F06EDAFF28F804CF0087E69A /* TeslawesomeWatch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F0C32E1C29350D9A000D1FC6 /* TeslawesomeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0C32E2329350D9A000D1FC6 /* Build configuration list for PBXNativeTarget "TeslawesomeTests" */;
+			buildPhases = (
+				F0C32E1929350D9A000D1FC6 /* Sources */,
+				F0C32E1A29350D9A000D1FC6 /* Frameworks */,
+				F0C32E1B29350D9A000D1FC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0C32E2229350D9A000D1FC6 /* PBXTargetDependency */,
+			);
+			name = TeslawesomeTests;
+			productName = TeslawesomeTests;
+			productReference = F0C32E1D29350D9A000D1FC6 /* TeslawesomeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -406,12 +429,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					F0354F2E28F94A8500C9A1EC = {
-						CreatedOnToolsVersion = 14.0.1;
-					};
 					F063A62528B1723A00F5B9C5 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -429,6 +449,10 @@
 					F06EDAFE28F804CF0087E69A = {
 						CreatedOnToolsVersion = 14.0.1;
 						TestTargetID = F06EDAE528F804CC0087E69A;
+					};
+					F0C32E1C29350D9A000D1FC6 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = F063A62528B1723A00F5B9C5;
 					};
 				};
 			};
@@ -449,7 +473,7 @@
 			projectRoot = "";
 			targets = (
 				F063A62528B1723A00F5B9C5 /* Teslawesome */,
-				F0354F2E28F94A8500C9A1EC /* TeslawesomeTests */,
+				F0C32E1C29350D9A000D1FC6 /* TeslawesomeTests */,
 				F063A63F28B1723C00F5B9C5 /* TeslawesomeUITests */,
 				F06EDAE528F804CC0087E69A /* TeslawesomeWatch */,
 				F06EDAF428F804CE0087E69A /* TeslawesomeWatch AppTests */,
@@ -459,13 +483,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F0354F2D28F94A8500C9A1EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F063A62428B1723A00F5B9C5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,28 +522,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		F0354F2B28F94A8500C9A1EC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		F0C32E1B29350D9A000D1FC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0354F3228F94A8500C9A1EC /* TeslawesomeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		F063A62228B1723A00F5B9C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F07FCF012918529A0076CFF9 /* VehicleCommandExtension.swift in Sources */,
 				F0354F2828F86E7100C9A1EC /* FlashLightsIntent.swift in Sources */,
 				F03E886128EF3A5E00DDA095 /* VehiclesListView.swift in Sources */,
+				F09540C4290AC48B00391E00 /* VehicleExtensions.swift in Sources */,
 				F063A65328B176AF00F5B9C5 /* LoginView.swift in Sources */,
 				F0AE24C528B3B96A00B39486 /* TeslaAuthWebView.swift in Sources */,
+				F0F468F828FF3A5D001BF6F3 /* VehicleChargingView.swift in Sources */,
 				F0C3710728F4C14200B654CA /* TaskRetry.swift in Sources */,
+				F0E471AF29003948006BCC68 /* VehicleOverviewView.swift in Sources */,
 				F08C2C3E28F2D5C6003925DE /* VehicleCommandsView.swift in Sources */,
-				F063A62A28B1723A00F5B9C5 /* TeslawsomeApp.swift in Sources */,
+				F063A62A28B1723A00F5B9C5 /* TeslawesomeApp.swift in Sources */,
+				F07FCEFF29157D6F0076CFF9 /* ViewExtensions.swift in Sources */,
 				F08C2C3C28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,14 +587,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F0C32E1929350D9A000D1FC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0C32E2629350EA7000D1FC6 /* TeslawesomeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F0354F3428F94A8500C9A1EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F063A62528B1723A00F5B9C5 /* Teslawesome */;
-			targetProxy = F0354F3328F94A8500C9A1EC /* PBXContainerItemProxy */;
-		};
 		F063A64228B1723C00F5B9C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F063A62528B1723A00F5B9C5 /* Teslawesome */;
@@ -589,43 +613,14 @@
 			target = F06EDAE528F804CC0087E69A /* TeslawesomeWatch */;
 			targetProxy = F06EDB0028F804CF0087E69A /* PBXContainerItemProxy */;
 		};
+		F0C32E2229350D9A000D1FC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F063A62528B1723A00F5B9C5 /* Teslawesome */;
+			targetProxy = F0C32E2129350D9A000D1FC6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		F0354F3628F94A8600C9A1EC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5R5RWMF2B7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.Teslawsome.TeslawesomeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F0354F3728F94A8600C9A1EC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5R5RWMF2B7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.igashev.Teslawsome.TeslawesomeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		F063A64828B1723C00F5B9C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -815,9 +810,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -832,9 +830,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -986,18 +987,53 @@
 			};
 			name = Release;
 		};
+		F0C32E2429350D9A000D1FC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeUnitTests.TeslawesomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teslawesome.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Teslawesome";
+			};
+			name = Debug;
+		};
+		F0C32E2529350D9A000D1FC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivaylogashev.TeslawesomeUnitTests.TeslawesomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teslawesome.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Teslawesome";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F0354F3528F94A8600C9A1EC /* Build configuration list for PBXNativeTarget "TeslawesomeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F0354F3628F94A8600C9A1EC /* Debug */,
-				F0354F3728F94A8600C9A1EC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F063A62128B1723A00F5B9C5 /* Build configuration list for PBXProject "Teslawesome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1052,6 +1088,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F0C32E2329350D9A000D1FC6 /* Build configuration list for PBXNativeTarget "TeslawesomeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0C32E2429350D9A000D1FC6 /* Debug */,
+				F0C32E2529350D9A000D1FC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1059,8 +1104,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.42.0;
+				kind = exactVersion;
+				version = 0.47.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

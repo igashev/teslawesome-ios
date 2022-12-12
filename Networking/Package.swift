@@ -16,14 +16,15 @@ let package = Package(
                 "Networking",
                 "AuthenticationNetworking",
                 "VehiclesDataNetworking",
-                "VehicleCommandsNetworking"
+                "VehicleCommandsNetworking",
+                "VehicleCommandsChargingNetworking"
             ]
         ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.42.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.47.1"),
         .package(url: "https://github.com/igashev/NetworkRequester.git", branch: "feature/IG/asyncStreamMiddleware"),
         .package(name: "Models", path: "../Models"),
     ],
@@ -40,6 +41,7 @@ let package = Package(
         .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
         .target(name: "AuthenticationNetworking", dependencies: ["Networking", "Models"], path: "Sources/Authentication"),
         .target(name: "VehiclesDataNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehiclesData"),
-        .target(name: "VehicleCommandsNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehicleCommands")
+        .target(name: "VehicleCommandsNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehicleCommands"),
+        .target(name: "VehicleCommandsChargingNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehicleCommandsCharging")
     ]
 )

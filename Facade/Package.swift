@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.42.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.47.1"),
         .package(name: "Networking", path: "../Networking"),
         .package(name: "Caching", path: "../Caching"),
         .package(name: "Models", path: "../Models"),

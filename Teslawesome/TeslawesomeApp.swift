@@ -10,6 +10,8 @@ import ComposableArchitecture
 import Networking
 import AuthenticationFacade
 
+import VehiclesDataModels
+
 struct AppReducer: ReducerProtocol {
     struct State: Equatable {
         var hasEverBeenAuthenticated: Bool = false
@@ -32,7 +34,7 @@ struct AppReducer: ReducerProtocol {
 }
 
 @main
-struct TeslawsomeApp: App {
+struct TeslawesomeApp: App {
     @ObservedObject var viewStore: ViewStoreOf<AppReducer>
     
     init() {
