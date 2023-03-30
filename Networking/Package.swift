@@ -22,10 +22,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.47.1"),
-        .package(url: "https://github.com/igashev/NetworkRequester.git", branch: "feature/IG/asyncStreamMiddleware"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "0.2.0"),
+        .package(url: "https://github.com/igashev/NetworkRequester.git", exact: "1.4.0"),
         .package(name: "Models", path: "../Models"),
     ],
     targets: [
@@ -35,7 +33,7 @@ let package = Package(
             name: "Networking",
             dependencies: [
                 "NetworkRequester",
-                .product(name: "Dependencies", package: "swift-composable-architecture")
+                .product(name: "Dependencies", package: "swift-dependencies")
             ]
         ),
         .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),

@@ -2,7 +2,7 @@ import NetworkRequester
 
 public extension AsyncCaller {
     static var standard: Self {
-        .init(decoder: Networking.jsonDecoder, middleware: Networking.middlewares)
+        .init(middleware: Networking.middlewares, decoder: Networking.jsonDecoder)
     }
     
     /// Performs a call where the error of `NetworkingError` `case networking` is decoded to `FacadeError`.

@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", exact: "0.47.1"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "0.2.0"),
         .package(name: "Networking", path: "../Networking"),
         .package(name: "Caching", path: "../Caching"),
         .package(name: "Models", path: "../Models"),
@@ -28,12 +28,15 @@ let package = Package(
             dependencies: [
                 "Networking",
                 "Caching",
-                .product(name: "Dependencies", package: "swift-composable-architecture")
+                .product(name: "Dependencies", package: "swift-dependencies")
             ],
             path: "Sources/Authentication"
         ),
         .target(name: "VehiclesDataFacade", path: "Sources/VehiclesData"),
-        
-            .testTarget(name: "AuthenticationFacadeTests", dependencies: ["AuthenticationFacade"], path: "Tests/AuthenticationTests")
+        .testTarget(
+            name: "AuthenticationFacadeTests",
+            dependencies: ["AuthenticationFacade"],
+            path: "Tests/AuthenticationTests"
+        )
     ]
 )

@@ -1,22 +1,6 @@
 import NetworkRequester
 
 public enum Environment {
-    case production
-    
-    public var api: API {
-        switch self {
-        case .production:
-            return .production
-        }
-    }
-    
-    public var auth: Auth {
-        switch self {
-        case .production:
-            return .production
-        }
-    }
-    
     public enum API: URLProviding {
         case production
         
@@ -36,6 +20,22 @@ public enum Environment {
             case .production:
                 return "https://auth.tesla.com"
             }
+        }
+    }
+    
+    case production
+    
+    public var api: API {
+        switch self {
+        case .production:
+            return .production
+        }
+    }
+    
+    public var auth: Auth {
+        switch self {
+        case .production:
+            return .production
         }
     }
 }
