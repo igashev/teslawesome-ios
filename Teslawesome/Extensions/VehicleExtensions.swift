@@ -49,11 +49,13 @@ extension ChargeState.State {
     var systemImage: String {
         switch self {
         case .charging:
-            return "bolt.fill"
+            return "bolt"
         case .disconnected:
             return "bolt.slash"
         case .stopped:
             return "stop.fill"
+        case .complete:
+            return "bolt.ring.closed"
         }
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import VehiclesDataModels
+import MapKit
 
 struct VehicleOverview: ReducerProtocol {
     struct State: Equatable {
@@ -99,11 +100,20 @@ struct VehicleOverviewView: View {
                             HStack {
                                 Text("\(vehicle.chargeState.batteryLevel)%")
                                 Spacer()
-                                Text("\(vehicle.batteryRangeInUserPreferedUnit, specifier: "%.2f") miles")
+                                Text("\(vehicle.batteryRangeInUserPreferedUnit, specifier: "%.2f") \(String(describing: vehicle.guiSettings.distanceUnit))")
                             }
                         }
                     )
                     .tint(chargingLevelColor(chargingLevel: vehicle.chargeState.batteryLevel))
+                    // 42.721742, 23.268204
+                    Map(coordinateRegion: .constant(.init(
+                        center: .init(latitude: 42.721742, longitude: 23.268204),
+                        latitudinalMeters: 250,
+                        longitudinalMeters: 250)
+                    ))
+                    .frame(maxWidth: .infinity, minHeight: 250)
+                    .edgesIgnoringSafeArea(.horizontal)
+                    .disabled(true)
 
                     Spacer()
                 }

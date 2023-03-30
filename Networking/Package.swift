@@ -40,6 +40,7 @@ let package = Package(
         ),
         .testTarget(name: "NetworkingTests", dependencies: ["Networking"]),
         .target(name: "AuthenticationNetworking", dependencies: ["Networking", "Models"], path: "Sources/Authentication"),
+        .testTarget(name: "AuthenticationNetworkingTests", dependencies: ["AuthenticationNetworking"], path: "Tests/Authentication"),
         .target(name: "VehiclesDataNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehiclesData"),
         .target(name: "VehicleCommandsNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehicleCommands"),
         .target(name: "VehicleCommandsChargingNetworking", dependencies: ["Networking", "Models"], path: "Sources/VehicleCommandsCharging")

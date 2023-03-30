@@ -43,6 +43,7 @@ public struct ChargeState: Decodable, Equatable {
         case disconnected = "Disconnected"
         case charging = "Charging"
         case stopped = "Stopped"
+        case complete = "Complete"
         
         public var description: String { rawValue }
     }
@@ -71,9 +72,18 @@ public struct GUISettings: Decodable, Equatable {
         case farenheit = "F"
     }
     
-    public enum DistanceUnit: String, Decodable {
+    public enum DistanceUnit: String, Decodable, CustomStringConvertible {
         case miles = "mi/hr"
         case kilometers = "km/hr"
+        
+        public var description: String {
+            switch self {
+            case .miles:
+                return "mi"
+            case .kilometers:
+                return "km"
+            }
+        }
     }
     
     public enum ChargeRateUnit: String, Decodable {

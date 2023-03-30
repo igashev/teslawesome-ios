@@ -85,7 +85,7 @@ struct LoginView: View {
                     viewStore.send(.didReceiveAuthCodeURL(url: callbackURL))
                 }
             }
-            .navigationDestination(isPresented: viewStore.binding(\.$showVehicles)) {
+            .sheet(isPresented: viewStore.binding(\.$showVehicles)) {
                 VehiclesListView(store: .init(initialState: .init(), reducer: VehiclesList()))
             }
             .navigationTitle("Sign in")
