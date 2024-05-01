@@ -10,25 +10,27 @@ import ComposableArchitecture
 import AuthenticationFacade
 import AuthenticationModels
 
-struct Login: ReducerProtocol {
+@Reducer
+struct Login {
+    @ObservableState
     struct State: Equatable {
         var codeVerifier = ""
-        @BindableState var fullTeslaAuthURL: URL?
-        @BindableState var showVehicles: Bool = false
+        var fullTeslaAuthURL: URL?
+        var showVehicles: Bool = false
     }
 
     enum Action: BindableAction {
         case didTapSignInWithTeslaButton
         case didReceiveAuthCodeURL(url: URL)
-        case requestBearerToken(authorizationCode: String, codeVerifier: String)
-        case didReceiveBearerToken(TaskResult<AuthenticationToken>)
+        case didReceiveBearerToken(AuthenticationToken)
         case binding(BindingAction<State>)
     }
     
     @Dependency(\.authenticationFacadeClient) var authenticationFacadeClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<Login> {
         BindingReducer()
+        
         Reduce { state, action in
             switch action {
             case .didTapSignInWithTeslaButton:
@@ -40,53 +42,46 @@ struct Login: ReducerProtocol {
                 state.fullTeslaAuthURL = nil
                 
                 let authorizationCode = authenticationFacadeClient.extractAuthorizationCodeFromURL(url) ?? "" // maybe throw an error
-                return Effect(value: .requestBearerToken(authorizationCode: authorizationCode, codeVerifier: state.codeVerifier))
-            case .requestBearerToken(let authorizationCode, let codeChallengeCode):
-                return .task {
-                    let taskResult = await TaskResult {
-                        try await authenticationFacadeClient.getAuthenticationToken(
-                            authorizationToken: authorizationCode,
-                            codeVerifier: codeChallengeCode
-                        )
-                    }
-                    
-                    return .didReceiveBearerToken(taskResult)
-                }
-            case .didReceiveBearerToken(.success):
+                return requestBearerToken(authorizationCode: authorizationCode, codeVerifier: state.codeVerifier)
+            case .didReceiveBearerToken:
                 state.showVehicles.toggle()
-                return .none
-            case .didReceiveBearerToken(.failure(let error)):
-                print(error)
                 return .none
             case .binding:
                 return .none
             }
         }
     }
+    
+    private func requestBearerToken(authorizationCode: String, codeVerifier: String) -> Effect<Action> {
+        .run { send in
+            let token = try await authenticationFacadeClient.getAuthenticationToken(
+                authorizationToken: authorizationCode,
+                codeVerifier: codeVerifier
+            )
+            
+            await send(.didReceiveBearerToken(token))
+        }
+    }
 }
 
 struct LoginView: View {
-    @ObservedObject var viewStore: ViewStoreOf<Login>
-    
-    init(store: StoreOf<Login>) {
-        self.viewStore = .init(store, observe: { $0 })
-    }
+    @Bindable var store: StoreOf<Login>
     
     var body: some View {
         NavigationStack {
             VStack {
                 Button("Sign in with Tesla") {
-                    viewStore.send(.didTapSignInWithTeslaButton)
+                    store.send(.didTapSignInWithTeslaButton)
                 }
                 .font(.headline)
             }
-            .sheet(item: viewStore.binding(\.$fullTeslaAuthURL)) { url in
+            .sheet(item: $store.fullTeslaAuthURL) { url in
                 TeslaAuthWebView(url: url) { callbackURL in
-                    viewStore.send(.didReceiveAuthCodeURL(url: callbackURL))
+                    store.send(.didReceiveAuthCodeURL(url: callbackURL))
                 }
             }
-            .sheet(isPresented: viewStore.binding(\.$showVehicles)) {
-                VehiclesListView(store: .init(initialState: .init(), reducer: VehiclesList()))
+            .sheet(isPresented: $store.showVehicles) {
+                VehiclesListView(store: .init(initialState: .init(), reducer: { VehiclesList() }))
             }
             .navigationTitle("Sign in")
         }
@@ -95,7 +90,7 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(store: .init(initialState: .init(), reducer: Login()))
+        LoginView(store: .init(initialState: .init(), reducer: { Login() }))
             .preferredColorScheme(.dark)
     }
 }

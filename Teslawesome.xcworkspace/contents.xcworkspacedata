@@ -2,18 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:/Users/ivaylo.gashev/Documents/Xcode/Teslawsome/Teslawesome.xcodeproj">
+      location = "container:Teslawesome.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Caching">
-   </FileRef>
-   <FileRef
-      location = "group:Facade">
+      location = "group:Networking">
    </FileRef>
    <FileRef
       location = "group:Models">
    </FileRef>
    <FileRef
-      location = "group:Networking">
+      location = "group:Facade">
+   </FileRef>
+   <FileRef
+      location = "group:Caching">
    </FileRef>
 </Workspace>

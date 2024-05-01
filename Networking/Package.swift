@@ -22,7 +22,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "0.2.0"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "1.2.2"),
         .package(url: "https://github.com/igashev/NetworkRequester.git", exact: "1.4.0"),
         .package(name: "Models", path: "../Models"),
     ],

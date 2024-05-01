@@ -10,7 +10,8 @@ import ComposableArchitecture
 import VehiclesDataModels
 import MapKit
 
-struct VehicleOverview: ReducerProtocol {
+@Reducer
+struct VehicleOverview {
     struct State: Equatable {
         let selectedVehicleBasic: VehicleBasic
         
@@ -25,31 +26,25 @@ struct VehicleOverview: ReducerProtocol {
     
     enum Action {
         case didAppear
-        case didReceiveVehicle(response: TaskResult<VehicleFull>)
+        case didReceiveVehicle(response: VehicleFull)
         case vehicleCommands(VehicleCommandsFeature.Action)
         case didRotateDevice(isLandscape: Bool)
     }
     
     @Dependency(\.vehiclesDataNetworkClient) var vehiclesDataNetworkClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some ReducerOf<VehicleOverview> {
         Reduce { state, action in
             switch action {
             case .didAppear:
-                return .task { [vehicleId = state.selectedVehicleBasic.id] in
-                    let vehicleData = await TaskResult {
-                        try await vehiclesDataNetworkClient.getVehicleData(vehicleId: vehicleId).response
-                    }
-
-                    return .didReceiveVehicle(response: vehicleData)
+                return .run { [vehicleId = state.selectedVehicleBasic.id] send in
+                    let vehicleData = try await vehiclesDataNetworkClient.getVehicleData(vehicleId: vehicleId).response
+                    await send(.didReceiveVehicle(response: vehicleData))
                 }
-            case .didReceiveVehicle(response: .success(let vehicle)):
+            case .didReceiveVehicle(let vehicle):
                 state.vehicle = vehicle
                 return .none
-            case .didReceiveVehicle(response: .failure(let error)):
-                print(error)
-                return .none
-            case .vehicleCommands(.didWakeUp(.success(let vehicleResponse))):
+            case .vehicleCommands(.didWakeUp(let vehicleResponse)):
                 state.vehicle?.state = vehicleResponse.response.state
                 return .none
             default:
@@ -106,11 +101,15 @@ struct VehicleOverviewView: View {
                     )
                     .tint(chargingLevelColor(chargingLevel: vehicle.chargeState.batteryLevel))
                     // 42.721742, 23.268204
-                    Map(coordinateRegion: .constant(.init(
-                        center: .init(latitude: 42.721742, longitude: 23.268204),
-                        latitudinalMeters: 250,
-                        longitudinalMeters: 250)
-                    ))
+                    Map(
+                        coordinateRegion: .constant(
+                            .init(
+                                center: .init(latitude: 42.721742, longitude: 23.268204),
+                                latitudinalMeters: 250,
+                                longitudinalMeters: 250
+                            )
+                        )
+                    )
                     .frame(maxWidth: .infinity, minHeight: 250)
                     .edgesIgnoringSafeArea(.horizontal)
                     .disabled(true)
@@ -124,9 +123,11 @@ struct VehicleOverviewView: View {
                     largestUndimmedIdentifier: .large,
                     interactiveDismissDisabled: true
                 ) {
-                    VehicleCommandsView(store: self.store.scope(
-                        state: \.vehicleCommandsState,
-                        action: VehicleOverview.Action.vehicleCommands)
+                    VehicleCommandsView(
+                        store: store.scope(
+                            state: \.vehicleCommandsState,
+                            action: \.vehicleCommands
+                        )
                     )
                     .padding(.top, 25)
                 }
@@ -160,7 +161,7 @@ struct VehicleOverviewView_Previews: PreviewProvider {
         NavigationStack {
             VehicleOverviewView(store: .init(
                 initialState: .init(selectedVehicleBasic: .stub),
-                reducer: VehicleOverview())
+                reducer: { VehicleOverview() })
             )
         }
     }

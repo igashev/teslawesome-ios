@@ -10,37 +10,34 @@ import ComposableArchitecture
 import VehiclesDataModels
 import VehiclesDataNetworking
 
-struct VehiclesList: ReducerProtocol {
+@Reducer
+struct VehiclesList {
+    
+    @ObservableState
     struct State: Equatable {
-        @BindableState var selectedVehicle: VehicleBasic? = nil
+        var selectedVehicle: VehicleBasic? = nil
         var vehicles: [VehicleBasic] = []
     }
 
     enum Action: BindableAction {
         case didAppear
-        case didReceiveVehiclesResponse(TaskResult<VehiclesBasicResponse>)
+        case didReceiveVehiclesResponse(VehiclesBasicResponse)
         case binding(BindingAction<State>)
     }
     
     @Dependency(\.vehiclesDataNetworkClient) var vehiclesDataNetworkClient
     
-    var body: some ReducerProtocol<State, Action> {
+    var body: some Reducer<State, Action> {
         BindingReducer()
         Reduce { state, action in
             switch action {
             case .didAppear:
-                return .task {
-                    let vehiclesResponseTask = await TaskResult {
-                        try await vehiclesDataNetworkClient.getVehicles()
-                    }
-                    
-                    return .didReceiveVehiclesResponse(vehiclesResponseTask)
+                return .run { send in
+                    let vehiclesResponseTask = try await vehiclesDataNetworkClient.getVehicles()
+                    await send(.didReceiveVehiclesResponse(vehiclesResponseTask))
                 }
-            case .didReceiveVehiclesResponse(.success(let response)):
+            case .didReceiveVehiclesResponse(let response):
                 state.vehicles = response.response
-                return .none
-            case .didReceiveVehiclesResponse(.failure(let error)):
-                print(error)
                 return .none
             case .binding:
                 return .none
@@ -50,15 +47,11 @@ struct VehiclesList: ReducerProtocol {
 }
 
 struct VehiclesListView: View {
-    @ObservedObject private var viewStore: ViewStoreOf<VehiclesList>
-    
-    init(store: StoreOf<VehiclesList>) {
-        self.viewStore = .init(store, observe: { $0 })
-    }
+    @Bindable var store: StoreOf<VehiclesList>
     
     var body: some View {
         NavigationSplitView {
-            List(viewStore.vehicles, selection: viewStore.binding(\.$selectedVehicle)) { vehicle in
+            List(store.vehicles, selection: $store.selectedVehicle) { vehicle in
                 NavigationLink(value: vehicle) {
                     VStack(alignment: .leading) {
                         Text(vehicle.displayName)
@@ -69,19 +62,23 @@ struct VehiclesListView: View {
             }
             .navigationTitle("Your vehicles")
         } detail: {
-            if let selectedVehicle = viewStore.state.selectedVehicle {
-                VehicleOverviewView(store: .init(
-                    initialState: .init(selectedVehicleBasic: selectedVehicle),
-                    reducer: VehicleOverview()
-                        .dependency(\.vehiclesDataNetworkClient, .previewValue)
-                        .dependency(\.vehicleCommandsNetworkClient, .previewValue)
-                ))
+            if let selectedVehicle = store.selectedVehicle {
+                VehicleOverviewView(
+                    store: .init(
+                        initialState: .init(selectedVehicleBasic: selectedVehicle),
+                        reducer: {
+                            VehicleOverview()
+                                .dependency(\.vehiclesDataNetworkClient, .previewValue)
+                                .dependency(\.vehicleCommandsNetworkClient, .previewValue)
+                        }
+                    )
+                )
             } else {
                 Text("Pick a vehicle")
             }
         }
         .onAppear {
-            viewStore.send(.didAppear)
+            store.send(.didAppear)
         }
     }
 }
@@ -90,7 +87,7 @@ struct VehiclesListView_Previews: PreviewProvider {
     static var previews: some View {
         VehiclesListView(store: .init(
             initialState: .init(),
-            reducer: VehiclesList())
+            reducer: { VehiclesList() })
         )
     }
 }

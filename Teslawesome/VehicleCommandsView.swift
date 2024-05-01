@@ -11,7 +11,9 @@ import VehicleCommandsNetworking
 import VehicleCommandsModels
 import VehiclesDataModels
 
-struct VehicleCommandsFeature: ReducerProtocol {
+@Reducer
+struct VehicleCommandsFeature {
+    @ObservableState
     struct State: Equatable {
         let vehicleId: Int
         let commands: [VehicleCommand] = VehicleCommand.allCases
@@ -24,123 +26,101 @@ struct VehicleCommandsFeature: ReducerProtocol {
 
     enum Action {
         case didAppear
-        case wakeUp
-        case didWakeUp(TaskResult<VehicleContainerResponse<VehicleBasic>>)
+        case didWakeUp(VehicleContainerResponse<VehicleBasic>)
         case runCommand(VehicleCommand)
-        case didReceiveCommandResponse(TaskResult<VehicleCommandContainerResponse>)
+        case didReceiveCommandResponse(VehicleCommandContainerResponse)
     }
     
     @Dependency(\.vehicleCommandsNetworkClient) var vehicleCommandsNetworkClient
     
-    func reduce(into state: inout State, action: Action) -> Effect<Action, Never> {
-        switch action {
-        case .didAppear:
-            return Effect(value: .wakeUp)
-        case .wakeUp:
-            return .task { [
-                vehicleId = state.vehicleId,
-                wakeUpAttempts = state.wakeUpMaxRetriesCount,
-                wakeUpAttemptsInterval = state.wakeUpIntervalBetweenRetriesInSeconds
-            ] in
-                let taskResult = await TaskResult<VehicleContainerResponse<VehicleBasic>> {
-                    try await Task.retrying(
-                        maxRetryCount: wakeUpAttempts,
-                        retryDelayInSeconds: wakeUpAttemptsInterval,
-                        retryIf: { $0.response.state != .online },
-                        operation: { [vehicleId = vehicleId] in
-                            try await vehicleCommandsNetworkClient.wakeUp(vehicleId: vehicleId)
-                        }
-                    ).value
+    var body: some ReducerOf<VehicleCommandsFeature> {
+        Reduce { state, action in
+            switch action {
+            case .didAppear:
+                return wakeUp(
+                    vehicleId: state.vehicleId,
+                    wakeUpAttempts: state.wakeUpMaxRetriesCount,
+                    wakeUpAttemptsInterval: state.wakeUpIntervalBetweenRetriesInSeconds
+                )
+            case .didWakeUp(let vehicleResponse):
+                state.isVehicleWokenUp = vehicleResponse.response.state == .online
+                return .none
+            case .didReceiveCommandResponse(let response):
+                print(response)
+                return .none
+            case .runCommand(.honkHorn):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let result = try await vehicleCommandsNetworkClient.honkHorn(vehicleId: vehicleId)
+                    await send(.didReceiveCommandResponse(result))
                 }
-                
-                return .didWakeUp(taskResult)
-            }
-        case .didWakeUp(.success(let vehicleResponse)):
-            state.isVehicleWokenUp = vehicleResponse.response.state == .online
-            return .none
-        case .didWakeUp(.failure(let error)):
-            print(error)
-            return .none
-        case .didReceiveCommandResponse(.success(let response)):
-            print(response)
-            return .none
-        case .didReceiveCommandResponse(.failure(let error)):
-            print(error)
-            return .none
-        case .runCommand(.honkHorn):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    try await vehicleCommandsNetworkClient.honkHorn(vehicleId: vehicleId)
+            case .runCommand(.flashLights):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.flashLights(vehicleId: vehicleId)
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.flashLights):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.flashLights(vehicleId: vehicleId)
-                }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.actuateFrunk):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.actuateTrunk(
+            case .runCommand(.actuateFrunk):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.actuateTrunk(
                         vehicleId: vehicleId,
                         whichTrunk: .front
                     )
+                    
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.actuateTrunk):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.actuateTrunk(
+            case .runCommand(.actuateTrunk):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.actuateTrunk(
                         vehicleId: vehicleId,
                         whichTrunk: .rear
                     )
+                    
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.unlockDoors):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.unlockDoors(vehicleId: vehicleId)
+            case .runCommand(.unlockDoors):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.unlockDoors(vehicleId: vehicleId)
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.lockDoors):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.lockDoors(vehicleId: vehicleId)
+            case .runCommand(.lockDoors):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.lockDoors(vehicleId: vehicleId)
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.ventWindows):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.ventWindows(vehicleId: vehicleId)
+            case .runCommand(.ventWindows):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.ventWindows(vehicleId: vehicleId)
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
-            }
-        case .runCommand(.closeWindows):
-            return .task { [vehicleId = state.vehicleId] in
-                let taskResult = await TaskResult {
-                    return try await vehicleCommandsNetworkClient.closeWindows(
+            case .runCommand(.closeWindows):
+                return .run { [vehicleId = state.vehicleId] send in
+                    let taskResult = try await vehicleCommandsNetworkClient.closeWindows(
                         vehicleId: vehicleId,
                         latitude: 42.6977,
                         longitude: 23.3219
                     )
+                    
+                    await send(.didReceiveCommandResponse(taskResult))
                 }
-                
-                return .didReceiveCommandResponse(taskResult)
             }
+        }
+    }
+    
+    private func wakeUp(
+        vehicleId: Int,
+        wakeUpAttempts: Int,
+        wakeUpAttemptsInterval: TimeInterval
+    ) -> Effect<Action> {
+        return .run { send in
+            let response: VehicleContainerResponse<VehicleBasic> = try await Task.retrying(
+                maxRetryCount: wakeUpAttempts,
+                retryDelayInSeconds: wakeUpAttemptsInterval,
+                retryIf: { $0.response.state != .online },
+                operation: { [vehicleId = vehicleId] in
+                    try await vehicleCommandsNetworkClient.wakeUp(vehicleId: vehicleId)
+                }
+            ).value
+            
+            await send(.didWakeUp(response))
         }
     }
 }
@@ -222,9 +202,8 @@ struct VehicleCommandsView: View {
 
 struct VehicleCommandsView_Previews: PreviewProvider {
     static var previews: some View {
-        VehicleCommandsView(store: .init(
-            initialState: .init(vehicleId: VehicleBasic.stub.id),
-            reducer: VehicleCommandsFeature())
-        )
+        VehicleCommandsView(store: .init(initialState: .init(vehicleId: 0), reducer: {
+            VehicleCommandsFeature()
+        }))
     }
 }

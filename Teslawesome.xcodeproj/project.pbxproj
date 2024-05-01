@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F02F809228F0687B00FF1018 /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809128F0687B00FF1018 /* Models */; };
-		F02F809428F0688C00FF1018 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = F02F809328F0688C00FF1018 /* Networking */; };
+		E39ED6562BD99FAF00840D1E /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = E39ED6552BD99FAF00840D1E /* Caching */; };
+		E39ED6582BD99FAF00840D1E /* Facade in Frameworks */ = {isa = PBXBuildFile; productRef = E39ED6572BD99FAF00840D1E /* Facade */; };
+		E39ED65A2BD99FAF00840D1E /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = E39ED6592BD99FAF00840D1E /* Models */; };
+		E39ED65C2BD99FAF00840D1E /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = E39ED65B2BD99FAF00840D1E /* Networking */; };
 		F0354F2828F86E7100C9A1EC /* FlashLightsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0354F2728F86E7100C9A1EC /* FlashLightsIntent.swift */; };
 		F03E886128EF3A5E00DDA095 /* VehiclesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03E886028EF3A5E00DDA095 /* VehiclesListView.swift */; };
 		F063A62A28B1723A00F5B9C5 /* TeslawesomeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F063A62928B1723A00F5B9C5 /* TeslawesomeApp.swift */; };
@@ -26,8 +28,6 @@
 		F06EDB0628F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06EDB0528F804CF0087E69A /* TeslawesomeWatch_Watch_AppUITestsLaunchTests.swift */; };
 		F07FCEFF29157D6F0076CFF9 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FCEFE29157D6F0076CFF9 /* ViewExtensions.swift */; };
 		F07FCF012918529A0076CFF9 /* VehicleCommandExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07FCF002918529A0076CFF9 /* VehicleCommandExtension.swift */; };
-		F08C2C3628F07E83003925DE /* Caching in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3528F07E83003925DE /* Caching */; };
-		F08C2C3A28F0C3B8003925DE /* Facade in Frameworks */ = {isa = PBXBuildFile; productRef = F08C2C3928F0C3B8003925DE /* Facade */; };
 		F08C2C3C28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3B28F1E4BD003925DE /* AuthenticationTokenNetworkingMiddleware.swift */; };
 		F08C2C3E28F2D5C6003925DE /* VehicleCommandsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C2C3D28F2D5C6003925DE /* VehicleCommandsView.swift */; };
 		F09540C4290AC48B00391E00 /* VehicleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09540C3290AC48B00391E00 /* VehicleExtensions.swift */; };
@@ -35,7 +35,6 @@
 		F0C32E2629350EA7000D1FC6 /* TeslawesomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0354F3128F94A8500C9A1EC /* TeslawesomeTests.swift */; };
 		F0C3710728F4C14200B654CA /* TaskRetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C3710628F4C14200B654CA /* TaskRetry.swift */; };
 		F0E471AF29003948006BCC68 /* VehicleOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E471AE29003948006BCC68 /* VehicleOverviewView.swift */; };
-		F0F468F828FF3A5D001BF6F3 /* VehicleChargingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F468F728FF3A5D001BF6F3 /* VehicleChargingView.swift */; };
 		F0F9063928B35E3A00D771E5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = F0F9063828B35E3A00D771E5 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
@@ -110,10 +109,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F08C2C3A28F0C3B8003925DE /* Facade in Frameworks */,
-				F08C2C3628F07E83003925DE /* Caching in Frameworks */,
-				F02F809428F0688C00FF1018 /* Networking in Frameworks */,
-				F02F809228F0687B00FF1018 /* Models in Frameworks */,
+				E39ED6562BD99FAF00840D1E /* Caching in Frameworks */,
+				E39ED6582BD99FAF00840D1E /* Facade in Frameworks */,
+				E39ED65A2BD99FAF00840D1E /* Models in Frameworks */,
+				E39ED65C2BD99FAF00840D1E /* Networking in Frameworks */,
 				F0F9063928B35E3A00D771E5 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,10 +323,10 @@
 			name = Teslawesome;
 			packageProductDependencies = (
 				F0F9063828B35E3A00D771E5 /* ComposableArchitecture */,
-				F02F809128F0687B00FF1018 /* Models */,
-				F02F809328F0688C00FF1018 /* Networking */,
-				F08C2C3528F07E83003925DE /* Caching */,
-				F08C2C3928F0C3B8003925DE /* Facade */,
+				E39ED6552BD99FAF00840D1E /* Caching */,
+				E39ED6572BD99FAF00840D1E /* Facade */,
+				E39ED6592BD99FAF00840D1E /* Models */,
+				E39ED65B2BD99FAF00840D1E /* Networking */,
 			);
 			productName = Teslawsome;
 			productReference = F063A62628B1723A00F5B9C5 /* Teslawesome.app */;
@@ -430,7 +429,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					F063A62528B1723A00F5B9C5 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -542,7 +541,6 @@
 				F09540C4290AC48B00391E00 /* VehicleExtensions.swift in Sources */,
 				F063A65328B176AF00F5B9C5 /* LoginView.swift in Sources */,
 				F0AE24C528B3B96A00B39486 /* TeslaAuthWebView.swift in Sources */,
-				F0F468F828FF3A5D001BF6F3 /* VehicleChargingView.swift in Sources */,
 				F0C3710728F4C14200B654CA /* TaskRetry.swift in Sources */,
 				F0E471AF29003948006BCC68 /* VehicleOverviewView.swift in Sources */,
 				F08C2C3E28F2D5C6003925DE /* VehicleCommandsView.swift in Sources */,
@@ -625,6 +623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -657,6 +656,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -671,7 +671,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -685,6 +685,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -717,6 +718,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -725,7 +727,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1105,27 +1107,27 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.52.0;
+				version = 1.9.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F02F809128F0687B00FF1018 /* Models */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Models;
-		};
-		F02F809328F0688C00FF1018 /* Networking */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Networking;
-		};
-		F08C2C3528F07E83003925DE /* Caching */ = {
+		E39ED6552BD99FAF00840D1E /* Caching */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Caching;
 		};
-		F08C2C3928F0C3B8003925DE /* Facade */ = {
+		E39ED6572BD99FAF00840D1E /* Facade */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Facade;
+		};
+		E39ED6592BD99FAF00840D1E /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		E39ED65B2BD99FAF00840D1E /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
 		};
 		F0F9063828B35E3A00D771E5 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;

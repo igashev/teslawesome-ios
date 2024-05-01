@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "0.2.0"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies.git", exact: "1.2.2"),
         .package(name: "Networking", path: "../Networking"),
         .package(name: "Caching", path: "../Caching"),
         .package(name: "Models", path: "../Models"),

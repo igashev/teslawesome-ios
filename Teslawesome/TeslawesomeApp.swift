@@ -12,7 +12,9 @@ import AuthenticationFacade
 
 import VehiclesDataModels
 
-struct AppReducer: ReducerProtocol {
+struct AppReducer: Reducer {
+    
+    @ObservableState
     struct State: Equatable {
         var hasEverBeenAuthenticated = false
         var isLoading = false
@@ -21,47 +23,40 @@ struct AppReducer: ReducerProtocol {
 
     enum Action {
         case didAppear
-        case didReceiveVehiclesList(TaskResult<VehiclesBasicResponse>)
+        case didReceiveVehiclesList(VehiclesBasicResponse)
     }
     
     @Dependency(\.authenticationFacadeClient) var authenticationFacadeClient
     @Dependency(\.vehiclesDataNetworkClient) var vehiclesDataNetworkClient
     
-    func reduce(into state: inout State, action: Action) -> Effect<Action, Never> {
-        switch action {
-        case .didAppear:
-            let hasEverBeenAuthenticated = authenticationFacadeClient.cachedAuthenticationToken != nil
-            state.hasEverBeenAuthenticated = hasEverBeenAuthenticated
-            
-            if hasEverBeenAuthenticated {
-                state.isLoading = true
-                return .task {
-                    let taskResult = await TaskResult {
-                        try await vehiclesDataNetworkClient.getVehicles()
+    var body: some ReducerOf<AppReducer> {
+        Reduce { state, action in
+            switch action {
+            case .didAppear:
+                let hasEverBeenAuthenticated = authenticationFacadeClient.cachedAuthenticationToken != nil
+                state.hasEverBeenAuthenticated = hasEverBeenAuthenticated
+                
+                if hasEverBeenAuthenticated {
+                    state.isLoading = true
+                    return .run { send in
+                        let vehicles = try await vehiclesDataNetworkClient.getVehicles()
+                        await send(.didReceiveVehiclesList(vehicles))
                     }
-                    
-                    return .didReceiveVehiclesList(taskResult)
+                } else {
+                    return .none
                 }
-            } else {
+            case .didReceiveVehiclesList(let vehicleResponse):
+                state.selectedVehicle = vehicleResponse.response.first
+                state.isLoading = false
                 return .none
             }
-        case .didReceiveVehiclesList(let result):
-            switch result {
-            case .success(let vehicleResponse):
-                state.selectedVehicle = vehicleResponse.response.first
-            case .failure(let error):
-                print(error)
-            }
-            
-            state.isLoading = false
-            return .none
         }
     }
 }
 
 @main
 struct TeslawesomeApp: App {
-    @ObservedObject var viewStore: ViewStoreOf<AppReducer>
+    let store: StoreOf<AppReducer>
     
     init() {
         Networking.appendMiddleware(
@@ -69,34 +64,38 @@ struct TeslawesomeApp: App {
             LoggingMiddleware.live
         )
         
-        self.viewStore = .init(.init(initialState: .init(), reducer: AppReducer()), observe: { $0 })
+        self.store = .init(initialState: .init(), reducer: { AppReducer() })
     }
     
     var body: some Scene {
         WindowGroup {
             Group {
-                if viewStore.hasEverBeenAuthenticated {
-                    if viewStore.state.isLoading {
+                if store.hasEverBeenAuthenticated {
+                    if store.isLoading {
                         ProgressView()
                     } else {
-                        if let selectedVehicle = viewStore.state.selectedVehicle {
+                        if let selectedVehicle = store.selectedVehicle {
                             NavigationStack {
-                                VehicleOverviewView(store: .init(
-                                    initialState: VehicleOverview.State(selectedVehicleBasic: selectedVehicle),
-                                    reducer: VehicleOverview()
-                                        .dependency(\.vehiclesDataNetworkClient, .previewValue)
-                                ))
+                                VehicleOverviewView(
+                                    store: .init(
+                                        initialState: VehicleOverview.State(selectedVehicleBasic: selectedVehicle),
+                                        reducer: {
+                                            VehicleOverview()
+                                                .dependency(\.vehiclesDataNetworkClient, .previewValue)
+                                        }
+                                    )
+                                )
                             }
                         } else {
-                            VehiclesListView(store: .init(initialState: .init(), reducer: VehiclesList()))
+                            VehiclesListView(store: .init(initialState: .init(), reducer: { VehiclesList() }))
                         }
                     }
                 } else {
-                    LoginView(store: .init(initialState: .init(), reducer: Login()))
+                    LoginView(store: .init(initialState: .init(), reducer: { Login() }))
                 }
             }
             .onAppear {
-                viewStore.send(.didAppear)
+                store.send(.didAppear)
             }
         }
     }
